@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_board_format_tree" model="ir.ui.view">
+        <field name="name">board.format.tree</field>
+        <field name="model">board.format</field>
+        <field name="arch" type="xml">
+            <list string="Board Formats">
+                <field name="product_id"/>
+                <field name="name"/>
+                <field name="area"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_board_format_form" model="ir.ui.view">
+        <field name="name">board.format.form</field>
+        <field name="model">board.format</field>
+        <field name="arch" type="xml">
+            <form string="Board Format">
+                <sheet>
+                    <group>
+                        <field name="product_id"/>
+                        <field name="name"/>
+                        <field name="area"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--    <record id="view_board_format_search" model="ir.ui.view">-->
+<!--        <field name="name">board.format.search</field>-->
+<!--        <field name="model">board.format</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <search string="Board Formats">-->
+<!--                <field name="name"/>-->
+<!--                <field name="product_id"/>-->
+<!--                <filter name="active" string="Active" domain="[('active', '=', True)]"/>-->
+<!--                <filter name="inactive" string="Inactive" domain="[('active', '=', False)]"/>-->
+<!--                <group string="Group By">-->
+<!--                    <filter name="by_product" string="Product" context="{'group_by': 'product_id'}"/>-->
+<!--                </group>-->
+<!--            </search>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="action_board_format" model="ir.actions.act_window">
+        <field name="name">Board Formats</field>
+        <field name="res_model">board.format</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="context">{'search_default_active': 1}</field>
+    </record>
+
+    <menuitem id="menu_board_format" name="Board Formats" parent="purchase.menu_purchase_config" action="action_board_format" sequence="100"/>
+</odoo>

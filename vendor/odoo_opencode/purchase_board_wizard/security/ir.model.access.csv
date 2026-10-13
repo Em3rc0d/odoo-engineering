@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_board_format_user,board.format.user,model_board_format,purchase.group_purchase_user,1,1,1,1
+access_board_format_manager,board.format.manager,model_board_format,purchase.group_purchase_manager,1,1,1,1
+access_purchase_board_wizard_user,purchase.board.wizard.user,model_purchase_board_wizard,purchase.group_purchase_user,1,1,1,1
+access_purchase_board_wizard_manager,purchase.board.wizard.manager,model_purchase_board_wizard,purchase.group_purchase_manager,1,1,1,1

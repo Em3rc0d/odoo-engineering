@@ -1,15 +1,24 @@
-# Quality gates (knowledge + runnable addons)
+# Gates de calidad
 
-| Gate | Condition | Status as of 2026-10-13 |
+| Gate | Condición objetiva | Actual |
 |---|---|---|
-| G0 — Source | SHA pinned and evidence link | PASS for 5 baselines |
-| G1 — License | Per-file/per-module copy permission + attribution + modifications | CONDITIONAL: licensed source modules identified, third-party chains not exhaustively audited |
-| G2 — Static | All XML, manifest, Python, ACL shapes, source indices | PASS locally on two candidate addons |
-| G3 — Install | Clean Odoo 19 install/upgrade with database and required dependencies | NOT RUN |
-| G4 — Test | All 11 tests, concurrency checks, ACL roles & logs | NOT RUN |
-| G5 — Product | User acceptance, enterprise/community compatibility, security, performance | NOT AUTHORIZED |
+| G0 — Fuente | URL, ref inmutable, archivo y procedencia registrados | **PASS documental**, 5 fuentes |
+| G1 — Licencia | Derecho de redistribución acreditado antes de copiar fuente | **BLOCKED**: sin evidencia de licencia raíz para 5 fuentes |
+| G2 — Conocimiento | Conceptos y límites claros, validación estructural local | **PREPARED**, requiere ejecución/verificación de paquete |
+| G3 — Runtime | Odoo real con versión, addons instalados, logs, test-tags y resultados | **NOT RUN** |
+| G4 — Reutilización | Nuevo caso independiente resuelto gracias al patrón y medido | **NOT RUN** |
+| G5 — Uso productivo | Seguridad, ACL/rules, tests multiusuario, migración y compatibilidad | **NOT AUTHORIZED** |
 
-**No one should infer G3/G4/G5 from a G2 pass.**
+**Norma:** un `PASS` de G0/G2 no implica `PASS` de G3. `BLOCKED` no se convierte automáticamente en `KILL`: impide la operación concreta.
 
-## Proof checklist
-Record exact Odoo edition/build, PostgreSQL version, addon commits, command line, isolated fixture seeds, logs, installation result, test case counts, concurrency attempt and permissions with a non-admin user. Consider security and module upgrade after basic behavior passes.
+## Evidencia mínima de prueba real (G3)
+
+- Commit Odoo, edición (Community/Enterprise) y versión exacta; addons-path y dependencias.
+- Comando reproducible, base efímera o aislada, fixtures y test tags.
+- Salida y resultado, incluida instalación del módulo y validación de ACL/record rules.
+- Registro de falsos positivos, estado de datos demo y casos multi-registro.
+- Sin credenciales, datos personales o volúmenes de producción.
+
+## Regla de promoción
+
+`STATIC_OBSERVATION` → `RUNTIME_VALIDATED` **solo** tras ejecutar y conservar evidencia. Un hallazgo de sintaxis evidente puede estar muy bien fundamentado estáticamente sin que se le atribuya una reproducción funcional inexistente.

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_task_creator_sale_form" model="ir.ui.view">
+            <field name="name">sale.task.creator.sale.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//header" position="inside">
+                    <button class="btn-secondary"
+                            name="create_task"
+                            string="Crear Tarea"
+                            type="object"/>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="task_ids" widget="many2many_tags" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_tasks"
+                            class="oe_stat_button"
+                            icon="fa-bars"
+                            type="object">
+                        <field name="task_count" string="Tareas" widget="statinfo"/>
+                    </button>
+                </xpath>
+
+                <xpath expr="//notebook" position="inside">
+                    <page name="associated_tasks" string="Tareas Asociadas">
+                        <field name="task_ids"
+                               options="{'no_create': True, 'no_create_edit': True, 'no_open': True}">
+                            <list string="Tareas" create="1" delete="0">
+                                <field name="name"/>
+                                <field name="user_ids"/>
+                                <field name="tag_ids"/>
+                                <field name="stage_id"/>
+                            </list>
+                        </field>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

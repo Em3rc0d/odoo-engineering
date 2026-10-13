@@ -1,54 +1,49 @@
-# Odoo Engineering
+# Odoo Engineering — Evidence-Driven Knowledge Base
 
-**From proven baselines to improved Odoo modules.** `odoo-engineering` is an **independent Odoo-only engineering repository** that turns public Odoo examples into traceable, safer, testable implementations: **copy when licensed → adapt → improve → validate**. It does not change `personal_knowledge` or the upstream repositories.
+> **Estado (13-10-2026):** fundación documental reproducible. **NO es una colección de addons certificados ni un framework productivo listo para instalar.**
 
-> **Status v0.2.0 (2026-10-13): 2 candidate Odoo 19 addons, static validation PASS, runtime validation NOT RUN.** Do not deploy to production until installation, functional tests and security gates pass.
+Repositorio **exclusivo de Odoo**: aprendizaje, arquitectura, ORM, seguridad, OWL, pruebas, revisión de addons y análisis de fallos reales, con procedencia verificable. Proyecto separado de `personal_knowledge`, sin acoplamiento ni sincronización entre ambos.
 
-## Working software (candidate addons)
+## Por qué existe
 
-| Module | What it does | Baseline | Added engineering |
-|---|---|---|---|
-| [`oe_sale_task_bridge`](addons/oe_sale_task_bridge/) | Sale order → selected project task | LGPL-3 `odoo_opencode/sale_task_creator` | Odoo19 `_read_group` tuple handling, namespaced link, project wizard, conservative ACL, tests |
-| [`oe_library`](addons/oe_library/) | Books, physical copies, loans | LGPL-3 educational `odoo_practices`; independent rebuild of unlicensed `Pruebas_Odoo` requirements | Per-copy active loan DB invariant, transition checks, nonstored overdue, demo isolation, tests |
+Unificar conocimiento técnico útil de **cinco repositorios públicos Odoo** de JoseCarlosLuque bajo una estructura limpia, sin clonar indiscriminadamente sus fuentes ni heredar defectos. La prioridad es el **aprendizaje y la toma de decisiones**; no se fusionan módulos ajenos ni se afirma que funcionan en Odoo 19 sin ejecutarlos.
 
-**Licensing:** Both modules declare LGPL-3 and include the license text under their directories. Original source and modifications are described in their `UPSTREAM.md`; the documentation repository as a whole does **not** assert a single blanket license. Sources without identifiable reuse grants are **not** copied. For more details, see [adoption matrix](research/baselines/adoption-matrix.json) and [license review](research/sources/LICENSE_REVIEW.md).
+**Fuentes auditadas:** `odoo_practices` (7 módulos, 245 ejercicios planificados), `odoo_opencode` (2 addons), `odoo_19_addons` (4 addons), `proyecto_OWL` (dashboard de laboratorio) y `Pruebas_Odoo` (biblioteca de laboratorio). Las cifras corresponden al inventario estático inspeccionado; los ejercicios pendientes no equivalen a ejercicios resueltos ni pruebas aprobadas.
 
-## Quick check (no Odoo required)
+## Empieza aquí
 
-```bash
-python3 scripts/validate_repo.py
-python3 scripts/validate_addons.py
-```
+| Necesidad | Documento |
+|---|---|
+| Alcance, estado y viabilidad | [MK0](research/MK0/README.md) |
+| Contratos del conocimiento | [MK1](research/MK1/README.md) |
+| Fuentes, SHA y licencias | [Catálogo JSON](research/sources/catalog.json), [licencias](research/sources/LICENSE_REVIEW.md) |
+| Problemas encontrados | [Índice de hallazgos](findings/README.md) |
+| Patrones reutilizables | [Índice de patrones](patterns/README.md) |
+| Reglas para agentes de IA | [AGENTS.md](AGENTS.md) |
+| Calificación y gates | [Quality gates](docs/quality-gates.md) |
+| Documentación oficial Odoo 19 | [Referencias](docs/official-references.md) |
+| Validar estructura sin instalar Odoo | `python scripts/validate_repo.py` |
 
-Offline checks cover document indexes, manifest file references, Python AST, XML syntax, ACL shape and a few known issue guardrails; they **do not prove installability or runtime behavior**.
+## Reglas innegociables
 
-## Install/test (requires your Odoo 19 + PostgreSQL environment)
+1. **Odoo-only.** No se almacenan patrones genéricos de React, Spring, Android, etc.
+2. **No trasplante de código sin permiso/licencia.** Descripciones originales, enlaces a las fuentes y ejemplos propios cuando corresponda.
+3. **Evidencia ≠ ejecución.** `STATIC_OBSERVATION`, `OFFICIAL_REFERENCE`, `HYPOTHESIS` y `RUNTIME_VALIDATED` son estados distintos.
+4. **Referencia Odoo 19, sin compatibilidad asumida.** Proyectos antiguos o laboratorios externos no son equivalentes a módulos instalables Odoo 19.
+5. **Sin dependencias ni automatizaciones caras.** Validador estándar de Python; sin GitHub Actions ni Docker obligatorio para el repositorio documental.
+6. **Gates antes de construir.** Esta fundación no autoriza implementar un addon, agente Odoo o SaaS.
 
-Add this repository's `addons/` directory to Odoo's `--addons-path`, then install in a **disposable test database**:
+## Madurez actual
 
-```bash
-./odoo-bin -d oe_test -i oe_library,oe_sale_task_bridge \
-  --addons-path=addons,/ruta/odoo-engineering/addons \
-  --test-enable --test-tags=/oe_library,/oe_sale_task_bridge \
-  --stop-after-init --log-level=test
-```
+- **MK0:** inventario y tesis de consolidación documentados; permiso de redistribución y ejecución real siguen **pendientes**.
+- **MK1:** contratos, categorías, índices y primer lote de patrones/hallazgos estructurados.
+- **Validación local:** comprobador documental incluido; se deben adjuntar logs/resultados cuando se ejecute.
+- **Producción:** **NOT AUTHORIZED** hasta contar con evidencia funcional y pruebas de seguridad.
 
-The command is a recipe **not executed** in this work. Installation depends on Odoo 19's `base`, `sale` and `project`, PostgreSQL, and users/ACL. Save logs and actual test results under `validation/`; a clean Python syntax check is insufficient.
+## Derechos y atribución
 
-## Research and decisions
+Este repositorio documenta observaciones **sobre** trabajos ajenos. No contiene copias de sus addons. La visibilidad pública de una fuente **no** equivale a licencia de redistribución. Antes de importar código, revisar la licencia aplicable por repositorio y archivo, y solicitar autorización cuando corresponda. Véase [LICENSE_REVIEW](research/sources/LICENSE_REVIEW.md).
 
-- [MK0 — original evaluation](research/MK0/README.md) and [MK1 — knowledge contract](research/MK1/README.md).
-- [MK2 — baseline adaptation and acceptance gates](research/MK2/README.md).
-- [Baseline adoption matrix](research/baselines/adoption-matrix.json) — five sources, nine candidate components.
-- [Findings](findings/README.md) and [patterns](patterns/README.md) — diagnosis informs modifications.
-- [License/copyright review](research/sources/LICENSE_REVIEW.md), [ADR-0004](decisions/ADR-0004-baseline-adaptation.md), [agents](AGENTS.md), [quality gates](docs/quality-gates.md).
-- [Validation evidence](validation/2026-10-13-static.md).
+## Cómo contribuir
 
-## Next improvements — only after A2/A3
-
-- Reconcile `purchase_board_wizard` with workshop flows: avoid model-name collisions and ambiguous square-metre quantity pricing.
-- Assess Odoo-native OWL frontend rather than reusing a Vite dashboard containing fabricated product KPIs.
-- Validate accounting/loan management logic and provenance separately (no unlicensed code copy).
-- Add librarian group/record-rule matrix and concurrency race tests once the modules install and their operations work.
-
-**No GitHub Actions CI is enabled.** The repository is maintained with local validation and reproducible evidence.
+Seguir [CONTRIBUTING.md](CONTRIBUTING.md) y [AGENTS.md](AGENTS.md). Cada hallazgo debe referirse a archivo y versión concretos; cada patrón debe indicar cuándo **no** usarlo y cómo validarlo.

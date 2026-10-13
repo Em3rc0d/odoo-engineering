@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_board_wizard_form" model="ir.ui.view">
+        <field name="name">purchase.board.wizard.form</field>
+        <field name="model">purchase.board.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Board to Purchase Order">
+                <group>
+                    <field name="order_id" invisible="1"/>
+                    <field name="product_id" required="1" options="{'no_create': True, 'no_open': True}"/>
+                    <field name="format_id" required="1" options="{'no_create': True, 'no_open': True}"/>
+                    <field name="quantity" required="1"/>
+                    <field name="calculated_area" widget="float" readonly="1"/>
+                </group>
+                <footer>
+                    <button name="action_add_line" string="Add Line" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_purchase_board_wizard" model="ir.actions.act_window">
+        <field name="name">Add Board</field>
+        <field name="res_model">purchase.board.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_order_id': active_id}</field>
+    </record>
+</odoo>

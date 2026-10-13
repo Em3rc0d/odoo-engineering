@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_wood_board_1" model="product.product">
+        <field name="name">Wood Board - Pine 18mm</field>
+        <field name="type">product</field>
+        <field name="purchase_ok">True</field>
+        <field name="uom_id" ref="uom.product_uom_square_meter"/>
+        <field name="standard_price">25.0</field>
+        <field name="list_price">35.0</field>
+    </record>
+
+    <record id="product_wood_board_2" model="product.product">
+        <field name="name">Wood Board - Oak 22mm</field>
+        <field name="type">product</field>
+        <field name="purchase_ok">True</field>
+        <field name="uom_id" ref="uom.product_uom_square_meter"/>
+        <field name="standard_price">45.0</field>
+        <field name="list_price">60.0</field>
+    </record>
+
+    <record id="board_format_pine_standard" model="board.format">
+        <field name="product_id" ref="product_wood_board_1"/>
+        <field name="name">Standard 2500x1250mm</field>
+        <field name="area">3.125</field>
+    </record>
+
+    <record id="board_format_pine_large" model="board.format">
+        <field name="product_id" ref="product_wood_board_1"/>
+        <field name="name">Large 3000x1500mm</field>
+        <field name="area">4.5</field>
+    </record>
+
+    <record id="board_format_oak_standard" model="board.format">
+        <field name="product_id" ref="product_wood_board_2"/>
+        <field name="name">Standard 2500x1250mm</field>
+        <field name="area">3.125</field>
+    </record>
+
+    <record id="board_format_oak_large" model="board.format">
+        <field name="product_id" ref="product_wood_board_2"/>
+        <field name="name">Large 3000x1500mm</field>
+        <field name="area">4.5</field>
+    </record>
+</odoo>

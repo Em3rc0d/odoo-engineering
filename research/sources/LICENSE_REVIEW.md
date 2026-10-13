@@ -1,17 +1,15 @@
-# License review — per-module rights, not just repository root
+# Revisión de licencias y atribución
 
-**2026-10-13.** Initial root-level GitHub repository metadata for five upstream repositories did not declare a uniform license. Further direct inspection of **module manifests** finds explicit `LGPL-3` assertions on several individual addons. This supersedes the coarse root-only conclusion in v0.1.
+En los cinco snapshots inspeccionados, la metadata pública no aportó licencia raíz identificada por GitHub. Esto **no** demuestra ausencia de todos los términos ni da permiso para copiar. `ica_web_responsive` requiere **revisión especial de terceros** porque su manifiesto y autoría podrían diferir de los demás addons.
 
-| Repository | Manifest/module observed | Module license declaration | Current handling |
-|---|---|---|---|
-| `odoo_practices` | `cd_practices`, `cd_library_practices`, `cd_vet_practices` | `LGPL-3` | educational + library baseline; cite exact SHA |
-| `odoo_opencode` | `sale_task_creator`, `purchase_board_wizard` | `LGPL-3` | modified derivative of sale/task with attribution |
-| `odoo_19_addons` | `cd_custom_task` | `LGPL-3` | evaluate in future, avoid duplicate feature |
-| `odoo_19_addons` | `cd_loan_management`, `cd_workshop_flows` | no license field in inspected manifests | reference only; no literal copying |
-| `odoo_19_addons` | `ica_web_responsive` | `LGPL-3`, authors `Agga, IdeaCode Academy` | hold: check original authorship/third-party license chain |
-| `proyecto_OWL` | standalone Vite project | no license identified | reimplement Odoo-specific requirements, not original source |
-| `Pruebas_Odoo` | `biblioteca_proyecto` | no license identified | domain specification only, no code copying |
+| ID | Fuente | Estado provisional |
+|---|---|---|
+| SRC-001 | odoo_practices | licencia raíz no identificada |
+| SRC-002 | odoo_opencode | licencia raíz no identificada |
+| SRC-003 | odoo_19_addons | licencia raíz no identificada; revisar cada addon |
+| SRC-004 | proyecto_OWL | licencia raíz no identificada |
+| SRC-005 | Pruebas_Odoo | licencia raíz no identificada |
 
-A `license` field in a module manifest is **evidence of a claimed license**, not a warranty that all commits/assets are owned by that manifest's author; check additional third-party sources prior to broad redistribution. Keep upstream attribution and LGPL license text. A public GitHub repo alone provides viewing/forking rights; it does not automatically license all reuse. See GitHub documentation: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository.
+**Acción por defecto:** citar, describir originalmente y no incorporar archivos ajenos. Antes de incluir código o arte gráfico: determinar titular, licencia, compatibilidad y condiciones de distribución; registrar hallazgo con evidencia. Este paquete incluye redacción nueva, enlaces y nombres de funciones únicamente para análisis.
 
-This repository has no **blanket** root license. The two module directories have their own LGPL-3 notices and texts. This is a technical compliance record, not a substitute for jurisdiction-specific legal review.
+**Licencia del nuevo repositorio:** intencionalmente **sin `LICENSE`** hasta decisión explícita de su propietario sobre publicación y permisos. No afirmar que los materiales ajenos son MIT, LGPL ni dominio público.
