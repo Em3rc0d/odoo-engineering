@@ -1,0 +1,181 @@
+{
+  "version": "1.0.0",
+  "entries": [
+    {
+      "id": "FND-001",
+      "title": "ensure_one innecesario en ejercicio de nivel modelo",
+      "source": "SRC-001",
+      "path": "cd_practices/models/cd_practice_item.py",
+      "lines": [
+        175,
+        179
+      ],
+      "severity": "MEDIUM",
+      "confidence": "STATIC_OBSERVATION",
+      "risk": "Mensajes engañosos y un primer test de aprendizaje que puede fallar por el motivo incorrecto.",
+      "test": "Invocar el método en un entorno limpio y confirmar que la condición observada desaparece sin cambiar el objetivo de aprendizaje.",
+      "document": "findings/FND-001.md",
+      "url": "https://github.com/JoseCarlosLuque/odoo_practices/blob/f2058b2ffac379332868fa1429d790468fe6f20e/cd_practices/models/cd_practice_item.py#L175-L179"
+    },
+    {
+      "id": "FND-002",
+      "title": "_read_group usado como si devolviera diccionarios",
+      "source": "SRC-002",
+      "path": "sale_task_creator/models/sale_order.py",
+      "lines": [
+        18,
+        27
+      ],
+      "severity": "HIGH",
+      "confidence": "STATIC_OBSERVATION",
+      "risk": "Conteos de tareas calculados erróneamente o error de ejecución.",
+      "test": "Instalar addon aislado, crear 0/1/2 tareas para dos órdenes, ejecutar compute con recordset múltiple.",
+      "document": "findings/FND-002.md",
+      "url": "https://github.com/JoseCarlosLuque/odoo_opencode/blob/9b3a89326c790d7987550d529b04bdeb9d684f56/sale_task_creator/models/sale_order.py#L18-L27"
+    },
+    {
+      "id": "FND-003",
+      "title": "Compute asigna a self dentro de bucle record",
+      "source": "SRC-003",
+      "path": "cd_custom_task/models/sale_order.py",
+      "lines": [
+        16,
+        19
+      ],
+      "severity": "HIGH",
+      "confidence": "STATIC_OBSERVATION",
+      "risk": "Resultado no fiable o excepción sobre recordsets múltiples.",
+      "test": "Leer task_count simultáneamente para órdenes con 0, 1 y 3 tareas en la misma operación.",
+      "document": "findings/FND-003.md",
+      "url": "https://github.com/JoseCarlosLuque/odoo_19_addons/blob/f183143cc131de47299ffc79136da4b1a18ede81/cd_custom_task/models/sale_order.py#L16-L19"
+    },
+    {
+      "id": "FND-004",
+      "title": "Datos demo cargados en data y demo",
+      "source": "SRC-005",
+      "path": "biblioteca_proyecto/__manifest__.py",
+      "lines": [
+        21,
+        40
+      ],
+      "severity": "MEDIUM",
+      "confidence": "STATIC_OBSERVATION",
+      "risk": "Instalaciones sin modo demo reciben registros de laboratorio y pueden duplicarse en instalaciones demo.",
+      "test": "Instalar sin demo y con demo en bases separadas; comparar contenido esperado.",
+      "document": "findings/FND-004.md",
+      "url": "https://github.com/JoseCarlosLuque/Pruebas_Odoo/blob/8460c6fcf372806886f7505220e192886c4b59da/biblioteca_proyecto/__manifest__.py#L21-L40"
+    },
+    {
+      "id": "FND-005",
+      "title": "Cron con _logger no definido y chatter sin dependencia",
+      "source": "SRC-005",
+      "path": "biblioteca_proyecto/models/prestamo.py",
+      "lines": [
+        55,
+        64
+      ],
+      "severity": "HIGH",
+      "confidence": "STATIC_OBSERVATION",
+      "risk": "Fallo del cron al ejecutarse y ausencia de API de chatter.",
+      "test": "Ejecutar cron con préstamo vencido en base de pruebas y observar registro y chatter.",
+      "document": "findings/FND-005.md",
+      "url": "https://github.com/JoseCarlosLuque/Pruebas_Odoo/blob/8460c6fcf372806886f7505220e192886c4b59da/biblioteca_proyecto/models/prestamo.py#L55-L64"
+    },
+    {
+      "id": "FND-006",
+      "title": "KPI por producto simulado con paridad de ID",
+      "source": "SRC-004",
+      "path": "src/core/dashboard_store.js",
+      "lines": [
+        48,
+        56
+      ],
+      "severity": "HIGH",
+      "confidence": "STATIC_OBSERVATION",
+      "risk": "Dashboard presentaría un KPI falso si se interpreta como información empresarial.",
+      "test": "Crear dataset con productos conocidos e IDs permutados: el KPI auténtico debe permanecer constante.",
+      "document": "findings/FND-006.md",
+      "url": "https://github.com/JoseCarlosLuque/proyecto_OWL/blob/5f332442777fc74a83763e29f65a2093b82484f1/src/core/dashboard_store.js#L48-L56"
+    },
+    {
+      "id": "FND-007",
+      "title": "Wizard de superficies depende del nombre de UoM",
+      "source": "SRC-003",
+      "path": "cd_workshop_flows/wizards/custom_board_wizard.py",
+      "lines": [
+        22,
+        38
+      ],
+      "severity": "MEDIUM",
+      "confidence": "STATIC_OBSERVATION",
+      "risk": "Dependencia de idioma/unidad y posible error al crear línea de compra.",
+      "test": "Repetir wizard con idioma alterno y confirmar creación de línea con cantidad/unidad/precio coherentes.",
+      "document": "findings/FND-007.md",
+      "url": "https://github.com/JoseCarlosLuque/odoo_19_addons/blob/f183143cc131de47299ffc79136da4b1a18ede81/cd_workshop_flows/wizards/custom_board_wizard.py#L22-L38"
+    },
+    {
+      "id": "FND-008",
+      "title": "Dos addons definen board.format con esquemas independientes",
+      "source": "SRC-003",
+      "path": "cd_workshop_flows/models/board_format.py",
+      "lines": [
+        1,
+        30
+      ],
+      "severity": "HIGH",
+      "confidence": "STATIC_OBSERVATION",
+      "risk": "Colisiones de registry/definición funcional si se instalan juntos; compatibilidad sin demostrar.",
+      "test": "Instalación por separado y conjunta en entorno desechable; revisar registros, campos, ACL y carga de vistas.",
+      "document": "findings/FND-008.md",
+      "url": "https://github.com/JoseCarlosLuque/odoo_19_addons/blob/f183143cc131de47299ffc79136da4b1a18ede81/cd_workshop_flows/models/board_format.py#L1-L30"
+    },
+    {
+      "id": "FND-009",
+      "title": "Tests ORM con expectativas globales frágiles",
+      "source": "SRC-001",
+      "path": "cd_practices/tests/test_03_relations.py",
+      "lines": [
+        76,
+        92
+      ],
+      "severity": "MEDIUM",
+      "confidence": "STATIC_OBSERVATION",
+      "risk": "Prueba sensible a datos externos y resultados no deterministas.",
+      "test": "Ejecutar suite con demo on/off y datos ajenos; resultados deben ser invariantes.",
+      "document": "findings/FND-009.md",
+      "url": "https://github.com/JoseCarlosLuque/odoo_practices/blob/f2058b2ffac379332868fa1429d790468fe6f20e/cd_practices/tests/test_03_relations.py#L76-L92"
+    },
+    {
+      "id": "FND-010",
+      "title": "Campos computados de cuotas sin asignación de reserva",
+      "source": "SRC-003",
+      "path": "cd_loan_management/models/cd_loan.py",
+      "lines": [
+        38,
+        58
+      ],
+      "severity": "MEDIUM",
+      "confidence": "STATIC_OBSERVATION",
+      "risk": "Compute inconsistente y resultados financieros ambiguos.",
+      "test": "Probar monto cero, cuotas cero, interés cero, múltiples préstamos y cambios de dependencia.",
+      "document": "findings/FND-010.md",
+      "url": "https://github.com/JoseCarlosLuque/odoo_19_addons/blob/f183143cc131de47299ffc79136da4b1a18ede81/cd_loan_management/models/cd_loan.py#L38-L58"
+    },
+    {
+      "id": "FND-011",
+      "title": "Guía de agentes usa contratos ORM que deben versionarse",
+      "source": "SRC-002",
+      "path": "AGENTS.md",
+      "lines": [
+        35,
+        65
+      ],
+      "severity": "LOW",
+      "confidence": "STATIC_OBSERVATION",
+      "risk": "Agentes replican patrones antiguos o inconsistentes como buenas prácticas actuales.",
+      "test": "Ejecutar snippets en Odoo 19 y someterlos a revisión de documentación/API.",
+      "document": "findings/FND-011.md",
+      "url": "https://github.com/JoseCarlosLuque/odoo_opencode/blob/9b3a89326c790d7987550d529b04bdeb9d684f56/AGENTS.md#L35-L65"
+    }
+  ]
+}

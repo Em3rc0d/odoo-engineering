@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Odoo Engineering Finding Index",
+  "type": "object",
+  "required": [
+    "version",
+    "entries"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "source",
+          "title",
+          "path",
+          "url",
+          "lines",
+          "confidence",
+          "severity",
+          "document",
+          "test"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^FND-[0-9]{3}$"
+          },
+          "source": {
+            "type": "string",
+            "pattern": "^SRC-[0-9]{3}$"
+          },
+          "confidence": {
+            "enum": [
+              "STATIC_OBSERVATION",
+              "OFFICIAL_REFERENCE",
+              "INFERRED",
+              "RUNTIME_VALIDATED"
+            ]
+          },
+          "severity": {
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "CRITICAL"
+            ]
+          },
+          "lines": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "evidence": {
+            "type": "string"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "confidence": {
+                  "const": "RUNTIME_VALIDATED"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "evidence"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

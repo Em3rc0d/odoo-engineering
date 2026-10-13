@@ -1,0 +1,91 @@
+{
+  "version": "1.0.0",
+  "entries": [
+    {
+      "id": "PAT-001",
+      "title": "Agrupación ORM compatible con Odoo 19",
+      "category": "ORM",
+      "findings": [
+        "FND-002",
+        "FND-011"
+      ],
+      "status": "DOCUMENTED_NOT_RUNTIME_VALIDATED",
+      "document": "patterns/PAT-001.md"
+    },
+    {
+      "id": "PAT-002",
+      "title": "Compute completo por registro",
+      "category": "ORM",
+      "findings": [
+        "FND-003",
+        "FND-010"
+      ],
+      "status": "DOCUMENTED_NOT_RUNTIME_VALIDATED",
+      "document": "patterns/PAT-002.md"
+    },
+    {
+      "id": "PAT-003",
+      "title": "Pruebas ORM aisladas",
+      "category": "TESTING",
+      "findings": [
+        "FND-001",
+        "FND-009"
+      ],
+      "status": "DOCUMENTED_NOT_RUNTIME_VALIDATED",
+      "document": "patterns/PAT-003.md"
+    },
+    {
+      "id": "PAT-004",
+      "title": "Separar data y demo",
+      "category": "BACKEND",
+      "findings": [
+        "FND-004"
+      ],
+      "status": "DOCUMENTED_NOT_RUNTIME_VALIDATED",
+      "document": "patterns/PAT-004.md"
+    },
+    {
+      "id": "PAT-005",
+      "title": "Chatter y cron explícitos",
+      "category": "BACKEND",
+      "findings": [
+        "FND-005"
+      ],
+      "status": "DOCUMENTED_NOT_RUNTIME_VALIDATED",
+      "document": "patterns/PAT-005.md"
+    },
+    {
+      "id": "PAT-006",
+      "title": "OWL: integridad semántica de KPI",
+      "category": "FRONTEND",
+      "findings": [
+        "FND-006"
+      ],
+      "status": "DOCUMENTED_NOT_RUNTIME_VALIDATED",
+      "document": "patterns/PAT-006.md"
+    },
+    {
+      "id": "PAT-007",
+      "title": "Compatibilidad de addons y unidades",
+      "category": "ARCHITECTURE",
+      "findings": [
+        "FND-007",
+        "FND-008"
+      ],
+      "status": "DOCUMENTED_NOT_RUNTIME_VALIDATED",
+      "document": "patterns/PAT-007.md"
+    },
+    {
+      "id": "PAT-008",
+      "title": "Tutor socrático Odoo con gates",
+      "category": "LEARNING",
+      "findings": [
+        "FND-001",
+        "FND-009",
+        "FND-011"
+      ],
+      "status": "DOCUMENTED_NOT_RUNTIME_VALIDATED",
+      "document": "patterns/PAT-008.md"
+    }
+  ]
+}

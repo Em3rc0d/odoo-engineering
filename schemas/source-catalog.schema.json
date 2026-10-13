@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Odoo Engineering Source Catalog",
+  "type": "object",
+  "required": [
+    "version",
+    "captured_on",
+    "scope",
+    "sources"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "captured_on": {
+      "type": "string",
+      "format": "date"
+    },
+    "scope": {
+      "const": "Odoo-only"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "owner",
+          "url",
+          "ref",
+          "declared_license",
+          "runtime"
+        ],
+        "properties": {
+          "id": {
+            "pattern": "^SRC-[0-9]{3}$",
+            "type": "string"
+          },
+          "ref": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "runtime": {
+            "enum": [
+              "NOT_EXECUTED",
+              "RUNTIME_VALIDATED"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "runtime": {
+                  "const": "RUNTIME_VALIDATED"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "evidence"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Odoo Engineering Pattern Index",
+  "type": "object",
+  "required": [
+    "version",
+    "entries"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "category",
+          "findings",
+          "status",
+          "document"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^PAT-[0-9]{3}$"
+          },
+          "findings": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^FND-[0-9]{3}$"
+            }
+          },
+          "status": {
+            "enum": [
+              "DOCUMENTED_NOT_RUNTIME_VALIDATED",
+              "RUNTIME_VALIDATED",
+              "REJECTED"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "RUNTIME_VALIDATED"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "evidence"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "version": "1.0.0",
+  "captured_on": "2026-10-13",
+  "origin": "public GitHub repository code inspection",
+  "scope": "Odoo-only",
+  "sources": [
+    {
+      "id": "SRC-001",
+      "name": "odoo_practices",
+      "owner": "JoseCarlosLuque",
+      "url": "https://github.com/JoseCarlosLuque/odoo_practices",
+      "ref": "f2058b2ffac379332868fa1429d790468fe6f20e",
+      "branch": "main",
+      "files": 212,
+      "declared_license": "NOT_FOUND_AT_REPOSITORY_ROOT",
+      "focus": "245 ejercicios de siete addons; pruebas, docente socrático y seguridad",
+      "role": "PRIMARY_EDUCATIONAL",
+      "runtime": "NOT_EXECUTED"
+    },
+    {
+      "id": "SRC-002",
+      "name": "odoo_opencode",
+      "owner": "JoseCarlosLuque",
+      "url": "https://github.com/JoseCarlosLuque/odoo_opencode",
+      "ref": "9b3a89326c790d7987550d529b04bdeb9d684f56",
+      "branch": "main",
+      "files": 34,
+      "declared_license": "NOT_FOUND_AT_REPOSITORY_ROOT",
+      "focus": "Dos addons para tareas de ventas y compras por superficies, AGENTS.md",
+      "role": "BACKEND_CASES",
+      "runtime": "NOT_EXECUTED"
+    },
+    {
+      "id": "SRC-003",
+      "name": "odoo_19_addons",
+      "owner": "JoseCarlosLuque",
+      "url": "https://github.com/JoseCarlosLuque/odoo_19_addons",
+      "ref": "f183143cc131de47299ffc79136da4b1a18ede81",
+      "branch": "main",
+      "files": 137,
+      "declared_license": "NOT_FOUND_AT_REPOSITORY_ROOT; REVIEW_PER_FILE_AND_THIRD_PARTY",
+      "focus": "Cuatro addons, préstamos, wizard, tareas y web responsive",
+      "role": "BACKEND_FRONTEND_CASES",
+      "runtime": "NOT_EXECUTED"
+    },
+    {
+      "id": "SRC-004",
+      "name": "proyecto_OWL",
+      "owner": "JoseCarlosLuque",
+      "url": "https://github.com/JoseCarlosLuque/proyecto_OWL",
+      "ref": "5f332442777fc74a83763e29f65a2093b82484f1",
+      "branch": "main",
+      "files": 16,
+      "declared_license": "NOT_FOUND_AT_REPOSITORY_ROOT",
+      "focus": "Dashboard OWL 2 con Vite, datos simulados; no integración Odoo demostrada",
+      "role": "FRONTEND_LEARNING",
+      "runtime": "NOT_EXECUTED"
+    },
+    {
+      "id": "SRC-005",
+      "name": "Pruebas_Odoo",
+      "owner": "JoseCarlosLuque",
+      "url": "https://github.com/JoseCarlosLuque/Pruebas_Odoo",
+      "ref": "8460c6fcf372806886f7505220e192886c4b59da",
+      "branch": "main",
+      "files": 28,
+      "declared_license": "NOT_FOUND_AT_REPOSITORY_ROOT",
+      "focus": "Biblioteca, préstamos, cron, avisos y vistas",
+      "role": "LEGACY_CASE",
+      "runtime": "NOT_EXECUTED"
+    }
+  ]
+}
