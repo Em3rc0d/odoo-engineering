@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="oe_loan_lab_list" model="ir.ui.view">
+    <field name="name">oe.loan.lab.list</field><field name="model">oe.loan.lab</field>
+    <field name="arch" type="xml"><list><field name="name"/><field name="partner_id"/><field name="principal"/><field name="term_months"/><field name="state"/></list></field>
+  </record>
+  <record id="oe_loan_lab_form" model="ir.ui.view">
+    <field name="name">oe.loan.lab.form</field><field name="model">oe.loan.lab</field>
+    <field name="arch" type="xml"><form string="Loan simulation"><header><button name="action_build_schedule" string="Simulate" type="object" class="btn-primary" invisible="state != 'draft'"/><button name="action_reset" string="Reset" type="object" invisible="state != 'simulated'"/><field name="state" widget="statusbar"/></header><sheet><group><field name="name"/><field name="partner_id"/><field name="company_id"/><field name="currency_id" invisible="1"/><field name="principal"/><field name="annual_interest_percent"/><field name="term_months"/><field name="start_date"/></group><notebook><page string="Schedule"><field name="line_ids" readonly="1"><list><field name="sequence"/><field name="due_date"/><field name="principal_component"/><field name="interest_component"/><field name="total_payment"/><field name="balance_after"/></list></field></page></notebook></sheet></form></field>
+  </record>
+  <record id="oe_loan_lab_action" model="ir.actions.act_window"><field name="name">Loan simulations (lab only)</field><field name="res_model">oe.loan.lab</field><field name="view_mode">list,form</field></record>
+  <menuitem id="oe_loan_lab_root" name="Loan Lab" groups="base.group_system" sequence="95"/>
+  <menuitem id="oe_loan_lab_menu" name="Simulations" parent="oe_loan_lab_root" action="oe_loan_lab_action" groups="base.group_system"/>
+</odoo>

@@ -1,54 +1,29 @@
-# Odoo Engineering
+# odoo-engineering
 
-**From proven baselines to improved Odoo modules.** `odoo-engineering` is an **independent Odoo-only engineering repository** that turns public Odoo examples into traceable, safer, testable implementations: **copy when licensed → adapt → improve → validate**. It does not change `personal_knowledge` or the upstream repositories.
+**Independent Odoo-only engineering source collection.** Approach: **copy licensed → adapt → improve → validate (validation explicitly deferred at user's request)**. Not connected to `personal_knowledge`.
 
-> **Status v0.2.0 (2026-10-13): 2 candidate Odoo 19 addons, static validation PASS, runtime validation NOT RUN.** Do not deploy to production until installation, functional tests and security gates pass.
+## Current inventory
 
-## Working software (candidate addons)
+### Feature addon candidates (UNTESTED)
 
-| Module | What it does | Baseline | Added engineering |
-|---|---|---|---|
-| [`oe_sale_task_bridge`](addons/oe_sale_task_bridge/) | Sale order → selected project task | LGPL-3 `odoo_opencode/sale_task_creator` | Odoo19 `_read_group` tuple handling, namespaced link, project wizard, conservative ACL, tests |
-| [`oe_library`](addons/oe_library/) | Books, physical copies, loans | LGPL-3 educational `odoo_practices`; independent rebuild of unlicensed `Pruebas_Odoo` requirements | Per-copy active loan DB invariant, transition checks, nonstored overdue, demo isolation, tests |
+- `addons/oe_sale_task_bridge` — Odoo sales → projects, revised from licensed `sale_task_creator`.
+- `addons/oe_library` — physical book copies and loan integrity, from licensed library curriculum / independent requirements.
+- `addons/oe_purchase_board` — quantity/area and purchase order wizard, purchase board upstream.
+- `addons/oe_crm_task_bridge` — independent CRM lead → project task association, avoiding duplicate sales fields.
+- `addons/oe_workshop_quote` — clean-room workshop quote flow.
+- `addons/oe_loan_lab` — educational amortization simulation, not financial accounting.
+- `addons/oe_sales_dashboard` — Odoo OWL client action and ORM data; no simulated product IDs.
 
-**Licensing:** Both modules declare LGPL-3 and include the license text under their directories. Original source and modifications are described in their `UPSTREAM.md`; the documentation repository as a whole does **not** assert a single blanket license. Sources without identifiable reuse grants are **not** copied. For more details, see [adoption matrix](research/baselines/adoption-matrix.json) and [license review](research/sources/LICENSE_REVIEW.md).
+### Baseline curriculum / references
 
-## Quick check (no Odoo required)
+- `learning/curricula.json` indexes **all seven modules and their 245 exercises** from `odoo_practices`; **does not** contain all seven original exercise modules or their tests.
+- `research/MK0` through `MK3`, `research/baselines/adoption-matrix.json`, 11 observed findings, eight patterns, source SHA pins.
+- `ica_web_responsive` is held as third-party / web-client override candidate pending independent provenance and compatibility decisions.
 
-```bash
-python3 scripts/validate_repo.py
-python3 scripts/validate_addons.py
-```
+## Provenance and license
 
-Offline checks cover document indexes, manifest file references, Python AST, XML syntax, ACL shape and a few known issue guardrails; they **do not prove installability or runtime behavior**.
+Each candidate records its own upstream source in `UPSTREAM.md`. Material without copying permission has been independently authored based on conceptual requirements. Some upstream addons declare LGPL-3 in their manifests; there is no assumption of a root-level blanket license. All code needs independent rights and compatibility review before redistribution as a finished product.
 
-## Install/test (requires your Odoo 19 + PostgreSQL environment)
+## Validation
 
-Add this repository's `addons/` directory to Odoo's `--addons-path`, then install in a **disposable test database**:
-
-```bash
-./odoo-bin -d oe_test -i oe_library,oe_sale_task_bridge \
-  --addons-path=addons,/ruta/odoo-engineering/addons \
-  --test-enable --test-tags=/oe_library,/oe_sale_task_bridge \
-  --stop-after-init --log-level=test
-```
-
-The command is a recipe **not executed** in this work. Installation depends on Odoo 19's `base`, `sale` and `project`, PostgreSQL, and users/ACL. Save logs and actual test results under `validation/`; a clean Python syntax check is insufficient.
-
-## Research and decisions
-
-- [MK0 — original evaluation](research/MK0/README.md) and [MK1 — knowledge contract](research/MK1/README.md).
-- [MK2 — baseline adaptation and acceptance gates](research/MK2/README.md).
-- [Baseline adoption matrix](research/baselines/adoption-matrix.json) — five sources, nine candidate components.
-- [Findings](findings/README.md) and [patterns](patterns/README.md) — diagnosis informs modifications.
-- [License/copyright review](research/sources/LICENSE_REVIEW.md), [ADR-0004](decisions/ADR-0004-baseline-adaptation.md), [agents](AGENTS.md), [quality gates](docs/quality-gates.md).
-- [Validation evidence](validation/2026-10-13-static.md).
-
-## Next improvements — only after A2/A3
-
-- Reconcile `purchase_board_wizard` with workshop flows: avoid model-name collisions and ambiguous square-metre quantity pricing.
-- Assess Odoo-native OWL frontend rather than reusing a Vite dashboard containing fabricated product KPIs.
-- Validate accounting/loan management logic and provenance separately (no unlicensed code copy).
-- Add librarian group/record-rule matrix and concurrency race tests once the modules install and their operations work.
-
-**No GitHub Actions CI is enabled.** The repository is maintained with local validation and reproducible evidence.
+**No tests were run for this delivery.** Source, XML, manifests, permissions, visuals, security, integration, Odoo 19 installation and database behavior remain unverified. This is a **complete candidate handoff of functional themes**, not a certified Odoo distribution. For optional future validation, see `research/MK2/README.md` and `scripts/`; do not run automatically.

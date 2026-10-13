@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="oe_board_format_list" model="ir.ui.view">
+    <field name="name">oe.board.format.list</field><field name="model">oe.board.format</field>
+    <field name="arch" type="xml"><list><field name="name"/><field name="width_mm"/><field name="height_mm"/><field name="area_m2"/></list></field>
+  </record>
+  <record id="oe_board_format_form" model="ir.ui.view">
+    <field name="name">oe.board.format.form</field><field name="model">oe.board.format</field>
+    <field name="arch" type="xml"><form><sheet><group><field name="name"/><field name="width_mm"/><field name="height_mm"/><field name="area_m2" readonly="1"/><field name="active"/></group></sheet></form></field>
+  </record>
+  <record id="oe_board_format_action" model="ir.actions.act_window">
+    <field name="name">Board Formats</field><field name="res_model">oe.board.format</field><field name="view_mode">list,form</field>
+  </record>
+  <menuitem id="oe_board_root" name="Board Formats" groups="purchase.group_purchase_manager" sequence="80"/>
+  <menuitem id="oe_board_formats" name="Formats" parent="oe_board_root" action="oe_board_format_action"/>
+  <record id="oe_purchase_board_wizard_form" model="ir.ui.view">
+    <field name="name">oe.purchase.board.wizard.form</field><field name="model">oe.purchase.board.wizard</field>
+    <field name="arch" type="xml"><form string="Purchase board by area"><group><field name="order_id"/><field name="product_id"/><field name="format_id"/><field name="pieces"/><field name="currency_id" invisible="1"/><field name="price_per_m2"/></group><footer><button name="action_add_board" type="object" string="Add board" class="btn-primary"/><button string="Cancel" special="cancel"/></footer></form></field>
+  </record>
+  <record id="oe_purchase_order_form_inherit" model="ir.ui.view">
+    <field name="name">purchase.order.form.oe.board</field><field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_form"/>
+    <field name="arch" type="xml"><xpath expr="//header" position="inside"><button name="action_oe_open_board_wizard" type="object" string="Board by Area" groups="purchase.group_purchase_user" invisible="state not in ('draft','sent')"/></xpath></field>
+  </record>
+</odoo>

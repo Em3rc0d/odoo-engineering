@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_oe_loan_lab_admin,oe.loan.lab admin,model_oe_loan_lab,base.group_system,1,1,1,1
+access_oe_loan_lab_line_admin,oe.loan.lab.line admin,model_oe_loan_lab_line,base.group_system,1,1,1,1

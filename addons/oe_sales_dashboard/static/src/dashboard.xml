@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+  <t t-name="oe_sales_dashboard.Dashboard">
+    <div class="o_oe_sales_dashboard p-4" role="region" aria-label="Sales dashboard sample">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2>Sales dashboard — bounded sample</h2><button type="button" class="btn btn-outline-primary" t-on-click="reload">Refresh</button>
+      </div>
+      <t t-if="state.loading"><p role="status">Loading data…</p></t>
+      <t t-elif="state.error"><p role="alert" class="text-danger"><t t-esc="state.error"/></p></t>
+      <t t-elif="state.payload">
+        <p class="text-muted"><t t-esc="state.payload.metric_definition"/></p>
+        <p><strong>Sampled orders:</strong> <t t-esc="state.payload.sample_count"/> / max <t t-esc="state.payload.sample_limit"/></p>
+        <h3>By currency (do not combine currencies)</h3>
+        <ul class="list-group mb-4"><t t-foreach="state.payload.currency_totals" t-as="row" t-key="row.currency"><li class="list-group-item"><t t-esc="row.currency"/> — <t t-esc="row.total"/> (<t t-esc="row.orders"/> orders)</li></t></ul>
+        <h3>Products — order-line occurrences (not quantities)</h3>
+        <ul class="list-group"><t t-foreach="state.payload.products" t-as="item" t-key="item.name"><li class="list-group-item"><t t-esc="item.name"/> — <t t-esc="item.line_count"/> lines</li></t></ul>
+      </t>
+    </div>
+  </t>
+</templates>
