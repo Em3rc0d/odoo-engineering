@@ -1,6 +1,6 @@
 # ADR-0002 — No importar código de terceros
 
-**Fecha:** 2026-10-13 — **Status: ACCEPTED**.
+**Fecha:** 2026-10-13 — **Status: SUPERSEDED by ADR-0004 (licensed modules may be adapted with attribution)**.
 
 **Contexto:** cinco repositorios observados sin licencia raíz identificada y con inconsistencias técnicas.
 

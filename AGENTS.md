@@ -1,29 +1,23 @@
-# AGENTS.md — Odoo Engineering
+# AGENTS — Odoo Engineering
 
-## Mission
-Build a verifiable **Odoo-only** knowledge base. Never imply third-party code or exercises are certified. Do not implement addons unless a separately approved build gate explicitly authorizes it.
+## Mission and approach
+Build a sound **Odoo-only codebase** from pinned public baselines: **COPY ONLY WHEN LICENSED → ADAPT → IMPROVE → TEST**. Document original repository, commit, per-addon license, changed behavior and test evidence. No edits outside this repository.
 
-## Sources and truth ranking
-1. **OFFICIAL_REFERENCE**: Odoo 19 documentation with exact URL and version.
-2. **STATIC_OBSERVATION**: observed code at a pinned repository commit + file line(s).
-3. **INFERRED**: a technically plausible consequence requiring tests.
-4. **RUNTIME_VALIDATED**: named Odoo version/edition, test command, environment, fixtures and actual output.
+## Before coding
+1. Read `research/MK2/README.md`, `research/baselines/adoption-matrix.json`, and `decisions/ADR-0004-baseline-adaptation.md`.
+2. Confirm module/file license, provenance and original author. A public repo with no license does not grant automatic redistribution rights.
+3. Inspect baseline code and conflicts with installed modules, especially `_name` collisions.
+4. Prioritize smallest vertical slice whose verification can be specified.
 
-An absence of runtime testing MUST NOT become a pass claim. A code smell is not proof of every user-visible failure.
+## When coding
+- Target Odoo **19.0**; prefer namespaced fields, correct API semantics and safe ACL (do not grant permissions over standard Odoo models).
+- Require tests beside every module, and isolate fixtures. Do not copy failed or incomplete upstream tests as validated solutions.
+- Preserve LGPL-3 license text and attribution on derivatives. Use `UPSTREAM.md` for source→adaptation map.
+- Never claim runtime readiness until an actual Odoo installation and TransactionCase execution have logs.
+- Keep versioned MK phases, actual baseline matrix and ADR history. Supersede old decisions explicitly, rather than silently deleting them.
 
-## Workflow
-- Read `research/MK0` and `research/MK1` and `docs/quality-gates.md` first.
-- Re-check source SHA and official documentation before adding an assertion.
-- Create or revise machine-readable entries (`findings/index.json`, `patterns/index.json`).
-- Update corresponding Markdown records; use original prose, not copied implementations.
-- Run `python scripts/validate_repo.py` and preserve evidence of its output.
-- Include impacts, boundary conditions, alternatives, reproducibility and attribution.
-- Prefer smallest useful delta; avoid duplicate patterns or unproven architecture.
-- Never write to `personal_knowledge`, original sources or other projects as a side effect.
+## Verify
+`python3 scripts/validate_repo.py && python3 scripts/validate_addons.py` (offline only), then run installed Odoo 19 tests in an isolated database, record both positive and negative results. Never trigger GitHub Actions without request.
 
-## Never
-- Invent runtime tests, module compatibility, license grants or source SHA.
-- Paste complete third-party modules, tests, AGENTS.md or exercise answers.
-- Call an OWL+Vite mock a working Odoo integration.
-- Suggest copying outdated Odoo APIs without verifying Odoo 19 semantics.
-- Modify unrelated code or activate GitHub Actions by default.
+## Guardrails
+No dependence on `personal_knowledge`; no migration from unlicensed projects; no copied standalone OWL mock masquerading as ERP integration; no free-form permissions on `sale.order`/`project.task`; no invented green tests; no direct production database operations.

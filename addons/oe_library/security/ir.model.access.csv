@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_oe_library_book_read,oe.library.book.read,model_oe_library_book,base.group_user,1,0,0,0
+access_oe_library_copy_read,oe.library.copy.read,model_oe_library_copy,base.group_user,1,0,0,0
+access_oe_library_loan_read,oe.library.loan.read,model_oe_library_loan,base.group_user,1,0,0,0
+access_oe_library_book_admin,oe.library.book.admin,model_oe_library_book,base.group_system,1,1,1,1
+access_oe_library_copy_admin,oe.library.copy.admin,model_oe_library_copy,base.group_system,1,1,1,1
+access_oe_library_loan_admin,oe.library.loan.admin,model_oe_library_loan,base.group_system,1,1,1,1
