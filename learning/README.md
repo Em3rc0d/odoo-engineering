@@ -1,5 +1,5 @@
-# Odoo practice baseline — seven curricula, 245 planned exercises
+# Odoo practices — seven upstream learning modules
 
-The [upstream Odoo 19 learning suite](https://github.com/JoseCarlosLuque/odoo_practices/tree/f2058b2ffac379332868fa1429d790468fe6f20e) contains seven addon families and 35 exercises each. `curricula.json` inventories **all 245 numbered exercises** by domain, not their underlying source files, tests or solutions. The original code is NOT copied into this repository; original exercises contain `NotImplementedError` placeholders and some brittle test assumptions. Treat upstream as an educational baseline; none of these seven exercise modules is locally installed or verified.
+All seven original `cd_*_practices` addon folders are now available under `vendor/odoo_practices/`; the `curricula.json` file indexes their **245 planned exercises** across domains. The original modules contain `NotImplementedError` placeholders and are **not completed solutions**. We have neither fixed the entire suite nor run its Odoo 19 tests.
 
-Copy/adapt the per-addon LGPL-3 material only after preserving attribution and comparing Odoo version APIs; do not claim that the curriculum inventory is equivalent to seven functioning local addons. This collection is intentionally distinct from the feature addons under `addons/`.
+The improved candidate addons under `addons/` serve different purposes and must not be mistaken for solved versions of the curriculum. Attribution and source SHA are tracked in `research/sources/catalog.json`. The upstream manifests declare LGPL-3; review relevant licensing for redistribution, including any separately authored files.

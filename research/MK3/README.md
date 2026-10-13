@@ -15,8 +15,8 @@
 
 ## Not copied
 
-- `ica_web_responsive`: broad Odoo web-client replacement and third-party provenance; no transplant because of high compatibility risk and unverified origin.
-- Original 245 exercise source/tests: documented in index; not asserted as implemented.
+- `ica_web_responsive`: baseline snapshot present under `vendor/`, but **quarantined**; broad web-client replacement and third-party provenance prohibit treating it as a deployable improved addon.
+- Original seven exercise addon snapshots: present in `vendor/odoo_practices/`, but **not solved, repaired or tested**.
 - Unlicensed `Pruebas_Odoo` source or `proyecto_OWL` source: requirements adapted, original source not copied.
 
 ## Debt knowingly accepted
@@ -26,3 +26,8 @@ There has been **no static checking, installation, integration run, Odoo 19 runt
 ## Source provenance
 
 Revisions are pinned under `research/sources/catalog.json`; each candidate contains `UPSTREAM.md`. The prior two modules remain. Do not claim a completed functional consolidation merely because each functional area has a candidate.
+
+
+## Final remote inventory note
+
+By commit `313fc7f`, `vendor/` contains 11 upstream addon folders (seven educational, two opencode, two odoo_19_addons). `addons/` contains seven candidate independently improved or rewritten addons. No tests run; no functional certification. License-rights review remains separate, especially for third-party web-responsive sources.

@@ -27,3 +27,9 @@ Each candidate records its own upstream source in `UPSTREAM.md`. Material withou
 ## Validation
 
 **No tests were run for this delivery.** Source, XML, manifests, permissions, visuals, security, integration, Odoo 19 installation and database behavior remain unverified. This is a **complete candidate handoff of functional themes**, not a certified Odoo distribution. For optional future validation, see `research/MK2/README.md` and `scripts/`; do not run automatically.
+
+## Upstream snapshots in `vendor/` (not our improved modules)
+
+The imported baseline tree now contains 11 source addon folders: the 7 `odoo_practices` curricula, 2 `odoo_opencode` addons, and `cd_custom_task` plus `ica_web_responsive` from `odoo_19_addons`. There are 312 files under `vendor/` at commit `313fc7f`. These are **unmodified reference snapshots**, not audited/improved production packages. Original 35-exercise modules include pedagogical placeholders; presence of those 245 exercises is **not** completion of solutions. Some original source areas are not copied because no clear rights were identified, and the implementation candidates in `addons/` cover their conceptual functionality independently.
+
+**License caveat:** particularly `ica_web_responsive` has distinct third-party authorship and should be treated as **quarantined**, not distributed/installed pending per-file provenance and compatibility verification. No tests were run at the user's request.
