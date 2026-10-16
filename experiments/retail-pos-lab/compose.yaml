@@ -1,0 +1,48 @@
+# Disposable Odoo Community 19 lab for retail/POS evaluation. NOT CUSTOMER PRODUCTION.
+name: retail-peru-lab
+
+services:
+  postgres:
+    image: postgres:16-bookworm
+    environment:
+      POSTGRES_USER: retail_lab
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: ${RETAIL_DB_PASSWORD:?Run bash scripts/lab.sh init}
+    volumes:
+      - retail_pgdata:/var/lib/postgresql/data
+    networks: [retail_db]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U retail_lab -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    security_opt:
+      - no-new-privileges:true
+
+  odoo:
+    image: odoo:19.0-20260908
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      HOST: postgres
+      PORT: "5432"
+      USER: retail_lab
+      PASSWORD: ${RETAIL_DB_PASSWORD:?Run bash scripts/lab.sh init}
+    ports:
+      - "127.0.0.1:8079:8069"
+    volumes:
+      - retail_filestore:/var/lib/odoo
+      - ./.local/odoo.conf:/etc/odoo/odoo.conf:ro
+    networks: [retail_front, retail_db]
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  retail_front: {}
+  retail_db:
+    internal: true
+
+volumes:
+  retail_pgdata: {}
+  retail_filestore: {}

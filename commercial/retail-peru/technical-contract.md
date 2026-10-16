@@ -20,6 +20,10 @@
 
 **Invariantes:** no acceso a otro cliente; no bases de datos de prueba expuestas; sin admin maestro compartido; no datos reales en fixtures o CI; idempotencia de importación y envío, contabilidad y stock coherentes, logs de estado de CPE sin secretos.
 
+## Laboratorio independiente de evaluación
+
+`experiments/retail-pos-lab/` proporciona una configuración de Docker y script de arranque con Odoo 19 y PostgreSQL 16 separados de Rally. Es una implementación documental/técnica de laboratorio **no ejecutada**, y NO constituye el aprovisionador comercial descrito arriba ni una integración de facturación.
+
 ## Dependencias bloqueantes / ADRs aún por resolver
 
 | ID | Decisión | Gate |

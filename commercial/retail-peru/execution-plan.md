@@ -6,7 +6,7 @@
 |---|---|---|
 | 1–2 | Verificar versión Odoo, licencia, addons Community POS/Stock, separación de Rally, inventario CPE/EDI | MK0/MK1 y DEC-01/02 documentados |
 | 1–4 | Prospectar 10 comercios potenciales, identificar sistemas y problemas | Registros anónimos, objeciones y necesidades CPE |
-| 3–5 | Levantar lab desechable Odoo 19, módulo POS/stock, importación 100 SKU ficticios | Logs, comandos, SHA/config y flujos reales |
+| 3–5 | Ejecutar el lab independiente en `experiments/retail-pos-lab/`, módulo POS/stock, importación 100 SKU ficticios | Logs, comandos, SHA/config y flujos reales |
 | 5–7 | Dos instalaciones aisladas, caja, devoluciones, stock, permisos, copia/restauración | Evidencia G1; no datos de clientes |
 | 7–9 | Evaluar PSE/OSE / EDI, costo por CPE, certificado y escenarios de rechazo | Proveedor/contrato técnico o bloqueo explícito |
 | 9–11 | Demo funcional grabada y oferta acotada; 5 presentaciones útiles | Feedback registrado y objeciones categorizadas |

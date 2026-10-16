@@ -25,6 +25,10 @@ Crear una solución propia de gestión comercial para pequeñas tiendas peruanas
 - `external/rally/` conserva exactamente su snapshot original: usar ideas/patrones solo cuando corresponda; Rally no es motor POS ni sube a producción con el producto inicial.
 - `commercial/retail-peru/` es **la especificación de producto** y un repositorio de decisiones para go-to-market; no contiene componentes listos para despliegue.
 
+## Laboratorio técnico disponible (sin pruebas ejecutadas)
+
+Se añadió [experiments/retail-pos-lab](../../experiments/retail-pos-lab/README.md): entorno aislado reproducible en Docker con Odoo 19 y PostgreSQL, independiente de Rally, solo para evaluación. No incluye POS preconfigurado, facturación SUNAT ni onboarding de clientes: esas son pruebas/gates posteriores.
+
 ## Documentos de trabajo
 
 1. [Matriz de paridad](parity.json) — 22 capacidades y grado de evidencia.
