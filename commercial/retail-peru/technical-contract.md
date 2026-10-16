@@ -46,9 +46,3 @@
 - https://www.odoo.com/documentation/19.0/es_419/applications/finance/fiscal_localizations/peru.html
 - https://www.odoo.com/documentation/19.0/applications/sales/point_of_sale/use.html
 - https://cpe.sunat.gob.pe/aliados/pse
-
-## Implementación exploratoria 2026-10-16
-
-Se añadió `integrations/sunat/nubefact_gateway/`: contratos originales para boleta/factura estándar gravada 18% en PEN, payload Nubefact JSON, controles de series/importes, un transportador HTTPS sin reintentos y normalización conservadora de respuestas. Nueve pruebas locales con red simulada ejecutadas correctamente. **No** es un addon Odoo instalado, no registra outbox en `account.move`, no emite CPE real y no implementa notas/créditos, consultas, XML/CDR/PDF persistentes o SUNAT directamente.
-
-**Preferencia actual:** examinar OPeru 19 EDI + Nubefact como integración preexistente para reducir el tiempo al MVP. El gateway propio queda como prueba de contratos/fallback, no se instalará en clientes mientras esté incompleto. Véase [estudio de integración](../../integrations/sunat/README.md) y [decisión de proveedor](../../integrations/sunat/DEC-PE-EDI-001.md).

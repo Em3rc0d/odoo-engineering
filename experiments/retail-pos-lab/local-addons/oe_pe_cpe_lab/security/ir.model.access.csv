@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_oe_pe_lab_document_invoice,oe.pe.lab.document invoice,model_oe_pe_lab_document,account.group_account_invoice,1,1,1,0

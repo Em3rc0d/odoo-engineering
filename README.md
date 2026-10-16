@@ -47,7 +47,3 @@ The source-to-target Git blob SHA + file mode comparison passed **94/94** at imp
 La estrategia de un **POS + inventario + caja con Odoo 19**, criterios reales para facturación SUNAT, onboarding repetible y primeros pilotos pagados está documentada en [commercial/retail-peru](commercial/retail-peru/README.md).
 
 Contiene [matriz de 22 capacidades](commercial/retail-peru/parity.json), [contrato técnico](commercial/retail-peru/technical-contract.md), [gates de aceptación](commercial/retail-peru/acceptance-gates.md), [experimento de ventas](commercial/retail-peru/sales-experiment.md), [unit economics](commercial/retail-peru/unit-economics.md) y [sprint de 14 días](commercial/retail-peru/execution-plan.md). **Todavía no es una distribución comercial instalada ni una integración CPE certificada.**
-
-## SUNAT / CPE — experimental adapter and fiscal decision
-
-The Peru retail track now has an [experimental Nubefact JSON gateway](integrations/sunat/README.md), a [fiscal provider choice ADR](integrations/sunat/DEC-PE-EDI-001.md), a limited original Python adapter and **nine unit tests with simulated HTTP**. No CPE has been emitted; the gateway is opt-in and cannot send by default. OPeru 19 + Nubefact is the preferred adoption candidate pending real Community compatibility, provider terms, and a controlled CDR validation.

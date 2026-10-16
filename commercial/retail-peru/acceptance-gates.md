@@ -51,7 +51,3 @@
 - [ ] Decisión GO/PIVOT/KILL fundada en evidencia y aprobada explícitamente.
 
 **Estado de todas las casillas:** PENDIENTE hasta aportar logs, actas o contratos. Esta documentación no ejecuta pruebas.
-
-## Nota de avance — SUNAT (2026-10-16)
-
-El adaptador experimental `integrations/sunat/` prueba el contrato básico de facturas/boletas con respuestas simuladas, pero **NO** satisface G3. Ninguna casilla de aceptación fiscal se ha marcado. Probar OPeru 19 + Nubefact en un Odoo Community real antes de elegir una implementación a medida. El almacenamiento idempotente y consulta de estados tras timeout sigue abierto.
