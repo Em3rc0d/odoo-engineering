@@ -116,14 +116,13 @@ if not config.payment_method_ids.filtered("is_cash_count"):
     config.write({"payment_method_ids": [Command.link(free_cash.id)]})
 assert config.payment_method_ids.filtered("is_cash_count"), "Cash method creation failed"
 
-# An illustrative purchaser to test 8-digit DNI handling in the local simulator.
+# A synthetic walk-in customer without tax identity. Peru validates VAT as RUC;\n# never insert an 8-digit DNI into VAT without the right identity type.
 partner_model = env["res.partner"].sudo()
 demo_partner = partner_model.search([("name", "=", "Consumidor ficticio - DEMO")], limit=1)
 if not demo_partner:
     demo_partner = partner_model.create({
         "name": "Consumidor ficticio - DEMO",
         "country_id": pe.id,
-        "vat": "00000000",
     })
 
 env.cr.commit()
