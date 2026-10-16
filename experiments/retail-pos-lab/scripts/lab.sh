@@ -30,6 +30,12 @@ if not config.exists():
         f.write("dbfilter = ^retail_peru_lab$\n")
         f.write("list_db = True\n")
         f.write("proxy_mode = False\n")
+        f.write("addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons\n")
+# Migrate pre-existing lab configs without touching the master password.
+existing = config.read_text()
+if "addons_path =" not in existing:
+    with config.open("a") as f:
+        f.write("addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons\n")
 os.chmod(env, 0o600)
 PY
 }
@@ -63,13 +69,33 @@ case "$TASK" in
     command -v curl >/dev/null || { echo "curl required" >&2; exit 1; }
     curl --fail-with-body --silent --show-error http://127.0.0.1:8079/web/version
     ;;
+  install-addon|upgrade-addon)
+    initialize
+    command -v docker >/dev/null || { echo "Docker Compose required" >&2; exit 1; }
+    # Database must have been created through the browser first.
+    # Stop application writes while applying Odoo schema/module updates.
+    compose stop odoo
+    mode="-i"
+    [[ "$TASK" == "upgrade-addon" ]] && mode="-u"
+    if ! compose run --rm --no-deps odoo --no-http --stop-after-init \
+        -d retail_peru_lab "$mode" oe_pe_cpe_lab; then
+      echo "Addon install/upgrade FAILED. Review Odoo logs; not certified." >&2
+      compose up -d odoo
+      exit 1
+    fi
+    compose up -d --wait odoo
+    echo "Addon installation/upgrade command completed; inspect Apps and invoice form."
+    ;;
+  validate-contract)
+    python3 -m unittest discover -s ../../integrations/sunat/tests -v
+    ;;
   master-password)
     [[ -f .local/odoo.conf ]] || { echo "Initialize first" >&2; exit 1; }
     echo "Sensitive: local output only; do not paste into chat, logs or issues" >&2
     sed -n 's/^admin_passwd = //p' .local/odoo.conf
     ;;
   *)
-    echo "Usage: bash scripts/lab.sh {init|up|down|status|logs|version|master-password}"
+    echo "Usage: bash scripts/lab.sh {init|up|down|status|logs|version|install-addon|upgrade-addon|validate-contract|master-password}"
     exit 2
     ;;
 esac

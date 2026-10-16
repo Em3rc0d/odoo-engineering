@@ -29,12 +29,21 @@ services:
       PORT: "5432"
       USER: retail_lab
       PASSWORD: ${RETAIL_DB_PASSWORD:?Run bash scripts/lab.sh init}
+      PYTHONPATH: /opt/retail-sunat-integration
     ports:
       - "127.0.0.1:8079:8069"
     volumes:
       - retail_filestore:/var/lib/odoo
       - ./.local/odoo.conf:/etc/odoo/odoo.conf:ro
+      - ./local-addons:/mnt/extra-addons:ro
+      - ../../integrations/sunat:/opt/retail-sunat-integration:ro
     networks: [retail_front, retail_db]
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8069/web/version', timeout=5).read()"]
+      interval: 15s
+      timeout: 8s
+      retries: 12
+      start_period: 45s
     security_opt:
       - no-new-privileges:true
 

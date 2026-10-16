@@ -27,7 +27,7 @@
                     <group>
                         <field name="oe_pe_lab_state" readonly="1"/>
                         <field name="oe_pe_lab_document_ids" invisible="1"/>
-                        <label for="oe_pe_lab_state" string="No tiene validez tributaria. No se ha enviado nada a SUNAT."/>
+                        <div class="text-danger">SIMULACIÓN LOCAL: sin envío a SUNAT, XML ni CDR real.</div>
                     </group>
                 </group>
             </xpath>

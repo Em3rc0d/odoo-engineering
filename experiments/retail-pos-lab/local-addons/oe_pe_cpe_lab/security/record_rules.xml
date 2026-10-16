@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="rule_oe_pe_lab_document_companies" model="ir.rule">
+        <field name="name">CPE local simulation: allowed companies</field>
+        <field name="model_id" ref="model_oe_pe_lab_document"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('account.group_account_invoice'))]"/>
+    </record>
+</odoo>

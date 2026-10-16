@@ -1,0 +1,60 @@
+name: Retail CPE Local Lab
+on:
+  push:
+    paths:
+      - 'experiments/retail-pos-lab/**'
+      - 'integrations/sunat/**'
+      - '.github/workflows/retail-cpe-lab.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Python/XML/ACL structure
+        run: python3 experiments/retail-pos-lab/scripts/verify_static.py
+      - name: Run stand-alone Nubefact contract tests (no network)
+        run: python3 -m unittest discover -s integrations/sunat/tests -v
+      - name: Validate shell and compose syntax
+        run: |
+          bash -n experiments/retail-pos-lab/scripts/lab.sh
+          cd experiments/retail-pos-lab
+          bash scripts/lab.sh init
+          docker compose --env-file .env.local -f compose.yaml config --quiet
+  odoo-install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    needs: static
+    steps:
+      - uses: actions/checkout@v4
+      - name: Initialize isolated lab and start DB
+        run: |
+          cd experiments/retail-pos-lab
+          bash scripts/lab.sh init
+          docker compose --env-file .env.local -f compose.yaml up -d --wait postgres
+      - name: Install Odoo Community 19 and CPE addon in ephemeral database
+        run: |
+          cd experiments/retail-pos-lab
+          docker compose --env-file .env.local -f compose.yaml run --rm --no-deps odoo \
+            --no-http --stop-after-init -d retail_peru_lab -i base,account,l10n_pe,oe_pe_cpe_lab
+      - name: Launch Odoo and verify HTTP readiness
+        run: |
+          cd experiments/retail-pos-lab
+          docker compose --env-file .env.local -f compose.yaml up -d --wait odoo
+          curl --fail-with-body --retry 6 --retry-delay 3 http://127.0.0.1:8079/web/version
+      - name: Diagnostic logs on failure
+        if: failure()
+        run: |
+          cd experiments/retail-pos-lab
+          docker compose --env-file .env.local -f compose.yaml ps || true
+          docker compose --env-file .env.local -f compose.yaml logs --tail=180 odoo postgres || true
+      - name: Stop ephemeral lab
+        if: always()
+        run: |
+          cd experiments/retail-pos-lab
+          docker compose --env-file .env.local -f compose.yaml down --remove-orphans || true

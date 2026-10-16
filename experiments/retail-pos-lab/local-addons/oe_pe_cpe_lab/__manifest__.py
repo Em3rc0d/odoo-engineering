@@ -8,6 +8,7 @@
     "depends": ["account", "l10n_pe"],
     "data": [
         "security/ir.model.access.csv",
+        "security/record_rules.xml",
         "views/account_move_views.xml",
         "views/cpe_document_views.xml",
     ],

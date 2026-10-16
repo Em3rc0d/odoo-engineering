@@ -58,6 +58,14 @@ class AccountMove(models.Model):
             doc = move.oe_pe_lab_document_ids[:1]
             move.oe_pe_lab_state = doc.state if doc else "not_submitted"
 
+    def write(self, vals):
+        protected = {"oe_pe_lab_kind", "oe_pe_lab_series", "oe_pe_lab_number"}
+        if protected.intersection(vals):
+            for move in self:
+                if move.oe_pe_lab_document_ids:
+                    raise UserError(_("Cannot change a CPE simulator identity after its first submission."))
+        return super().write(vals)
+
     def _oe_pe_lab_require_rights(self):
         self.ensure_one()
         if not self.env.user.has_group("account.group_account_invoice"):
