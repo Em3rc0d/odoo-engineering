@@ -2,10 +2,14 @@
 
 ## Estado y alcance
 
-**Integrado en código para prueba local; instalación/ejecución real de Odoo aún por verificar en CI/Docker.**
+**Laboratorio local con addon de simulación. La instalación del addon inicial fue validada en CI; el demo de POS requiere verificar el workflow del commit actual.**
 Este laboratorio usa `Odoo 19 Community`, `PostgreSQL 16`, módulos nativos POS/inventario y un addon propio `oe_pe_cpe_lab` montado automáticamente desde `local-addons/`. Reutiliza el **mismo contrato Python Nubefact JSON** bajo `integrations/sunat/nubefact_gateway`, montado en `/opt/retail-sunat-integration` y accesible mediante `PYTHONPATH`.
 
 El addon sólo **simula** aceptación/rechazo/timeout después de preparar un payload fiscal con datos de una factura contabilizada. No hay HTTP a SUNAT/Nubefact, ni XML, firma digital, CDR real, consulta de comprobantes oficiales, anulación ni emisión válida. No admite certificados ni tokens. Nunca usar con transacciones tributarias reales.
+
+## Nuevo: tienda DEMO preparada automáticamente
+
+Para probar caja + POS + inventario sin configurar todo a mano, sigue [DEMO-RUNBOOK.md](DEMO-RUNBOOK.md) y ejecuta `bash scripts/lab.sh demo-setup`. Esta ruta de prueba no emite CPE ante SUNAT.
 
 ## Requisitos
 

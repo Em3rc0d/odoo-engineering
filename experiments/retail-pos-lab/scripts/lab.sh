@@ -69,6 +69,28 @@ case "$TASK" in
     command -v curl >/dev/null || { echo "curl required" >&2; exit 1; }
     curl --fail-with-body --silent --show-error http://127.0.0.1:8079/web/version
     ;;
+  demo-setup)
+    initialize
+    command -v docker >/dev/null || { echo "Docker Compose required" >&2; exit 1; }
+    compose up -d --wait postgres
+    # -i is safe for the existing database: installs missing modules; never deletes data.
+    compose stop odoo
+    if ! compose run --rm --no-deps odoo --no-http --stop-after-init \\
+        -d retail_peru_lab -i base,account,stock,l10n_pe,point_of_sale,l10n_pe_pos,oe_pe_cpe_lab; then
+      echo "Odoo module installation FAILED; review logs." >&2
+      exit 1
+    fi
+    compose up -d --wait odoo
+    compose exec -T odoo odoo shell -d retail_peru_lab --no-http < scripts/seed_demo.py
+    compose exec -T odoo odoo shell -d retail_peru_lab --no-http < scripts/check_demo.py
+    echo "DEMO ready: http://127.0.0.1:8079  (real SUNAT emission DISABLED)"
+    ;;
+  seed-demo)
+    compose exec -T odoo odoo shell -d retail_peru_lab --no-http < scripts/seed_demo.py
+    ;;
+  check-demo)
+    compose exec -T odoo odoo shell -d retail_peru_lab --no-http < scripts/check_demo.py
+    ;;
   install-addon|upgrade-addon)
     initialize
     command -v docker >/dev/null || { echo "Docker Compose required" >&2; exit 1; }
@@ -95,7 +117,7 @@ case "$TASK" in
     sed -n 's/^admin_passwd = //p' .local/odoo.conf
     ;;
   *)
-    echo "Usage: bash scripts/lab.sh {init|up|down|status|logs|version|install-addon|upgrade-addon|validate-contract|master-password}"
+    echo "Usage: bash scripts/lab.sh {init|up|down|status|logs|version|demo-setup|seed-demo|check-demo|install-addon|upgrade-addon|validate-contract|master-password}"
     exit 2
     ;;
 esac

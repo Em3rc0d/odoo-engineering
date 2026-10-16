@@ -23,6 +23,7 @@ jobs:
       - name: Validate shell and compose syntax
         run: |
           bash -n experiments/retail-pos-lab/scripts/lab.sh
+          python3 -m py_compile experiments/retail-pos-lab/scripts/seed_demo.py experiments/retail-pos-lab/scripts/check_demo.py
           cd experiments/retail-pos-lab
           bash scripts/lab.sh init
           docker compose --env-file .env.local -f compose.yaml config --quiet
@@ -42,6 +43,16 @@ jobs:
           cd experiments/retail-pos-lab
           docker compose --env-file .env.local -f compose.yaml run --rm --no-deps odoo \
             --no-http --stop-after-init -d retail_peru_lab -i base,account,l10n_pe,oe_pe_cpe_lab
+      - name: Seed demo shop on actual Odoo 19 ORM
+        run: |
+          cd experiments/retail-pos-lab
+          docker compose --env-file .env.local -f compose.yaml run --rm --no-deps odoo \\
+            --no-http --stop-after-init -d retail_peru_lab -i stock,point_of_sale,l10n_pe_pos
+          docker compose --env-file .env.local -f compose.yaml up -d --wait odoo
+          docker compose --env-file .env.local -f compose.yaml exec -T odoo \\
+            odoo shell -d retail_peru_lab --no-http < scripts/seed_demo.py
+          docker compose --env-file .env.local -f compose.yaml exec -T odoo \\
+            odoo shell -d retail_peru_lab --no-http < scripts/check_demo.py
       - name: Launch Odoo and verify HTTP readiness
         run: |
           cd experiments/retail-pos-lab
