@@ -6,7 +6,7 @@
   "price_url": "https://www.invyperu.com/precios",
   "source_classification": "COMPETITOR_MARKETING_OBSERVED_ONLY",
   "target": "Odoo Community 19 self-hosted retail",
-  "note": "An official Odoo module's existence is not evidence that it is installed, production-safe or complies with Peru electronic invoicing.",
+  "note": "An official Odoo module's existence is not evidence that it is installed, production-safe or complies with Peru electronic invoicing. The initial Nubefact client added 2026-10-16 is local-contract-tested, but NO source-to-Odoo binding, live SUNAT transmission or notes are implemented.",
   "items": [
     {
       "id": "INV-01",
@@ -104,7 +104,7 @@
       "observation": "Anunciado públicamente",
       "implementation": "l10n_pe base + NEW_EDI_PROVIDER_INTEGRATION",
       "phase": "DIRECT_COMPETITOR_GATE",
-      "validation": "L10N_PE_EDI_AVAILABILITY_UNCONFIRMED_IN_COMMUNITY",
+      "validation": "EXPERIMENTAL_PAYLOAD_AND_PROVIDER_TRANSPORT_ONLY_NOT_WIRED_TO_ODOO_OR_CERTIFIED",
       "commercial_priority": "Alta",
       "technical_risk": "Crítica"
     },
@@ -114,7 +114,7 @@
       "observation": "Anunciado públicamente",
       "implementation": "NEW_EDI_PROVIDER_INTEGRATION",
       "phase": "DIRECT_COMPETITOR_GATE",
-      "validation": "NOT_BUILT",
+      "validation": "PROVIDER_RESPONSE_NORMALIZATION_EXPERIMENTAL; NO_STATUS_QUERY_OR_CDR_VALIDATION",
       "commercial_priority": "Alta",
       "technical_risk": "Crítica"
     },

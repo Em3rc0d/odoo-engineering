@@ -28,3 +28,7 @@
 - Decisión: GO/PIVOT/KILL basada en la matriz y datos recopilados.
 
 **Próxima acción de mayor rendimiento:** contratar/resolver la ruta fiscal y montar un POS demostrable; después buscar compradores reales antes de pulir marca o IA.
+
+## Avance técnico 2026-10-16
+
+Se desarrolló un contrato de payload y transporte Nubefact experimental en `integrations/sunat/`, validado con nueve casos unitarios y mock HTTP. **No sustituye** la evaluación de módulos OPeru ni un sandbox de Odoo/ SUNAT. Prioridad inmediata: certificación/compatibilidad del módulo ya existente, obtención de condiciones de un proveedor, y un ciclo POS→documento→consulta/recepción real con RUC autorizado.
