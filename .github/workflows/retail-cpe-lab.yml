@@ -33,24 +33,10 @@ jobs:
     needs: static
     steps:
       - uses: actions/checkout@v4
-      - name: Initialize isolated lab and start DB
+      - name: Bootstrap demo from empty database using user-facing command
         run: |
           cd experiments/retail-pos-lab
-          bash scripts/lab.sh init
-          docker compose --env-file .env.local -f compose.yaml up -d --wait postgres
-      - name: Install Odoo Community 19 and CPE addon in ephemeral database
-        run: |
-          cd experiments/retail-pos-lab
-          docker compose --env-file .env.local -f compose.yaml run --rm --no-deps odoo \
-            --no-http --stop-after-init -d retail_peru_lab -i base,account,l10n_pe,oe_pe_cpe_lab
-      - name: Seed demo shop on actual Odoo 19 ORM
-        run: |
-          cd experiments/retail-pos-lab
-          docker compose --env-file .env.local -f compose.yaml run --rm --no-deps odoo \
-            --no-http --stop-after-init -d retail_peru_lab -i stock,point_of_sale,l10n_pe_pos
-          docker compose --env-file .env.local -f compose.yaml up -d --wait odoo
-          bash scripts/lab.sh seed-demo
-          bash scripts/lab.sh check-demo
+          bash scripts/lab.sh demo-setup
           bash scripts/lab.sh checkout-smoke
       - name: Launch Odoo and verify HTTP readiness
         run: |
