@@ -81,15 +81,15 @@ case "$TASK" in
       exit 1
     fi
     compose up -d --wait odoo
-    compose exec -T odoo odoo shell -d retail_peru_lab --no-http < scripts/seed_demo.py
-    compose exec -T odoo odoo shell -d retail_peru_lab --no-http < scripts/check_demo.py
+    compose exec -T odoo sh -c 'exec odoo shell -d retail_peru_lab --no-http --db_host="$HOST" --db_port="$PORT" --db_user="$USER" --db_password="$PASSWORD"' < scripts/seed_demo.py
+    compose exec -T odoo sh -c 'exec odoo shell -d retail_peru_lab --no-http --db_host="$HOST" --db_port="$PORT" --db_user="$USER" --db_password="$PASSWORD"' < scripts/check_demo.py
     echo "DEMO ready: http://127.0.0.1:8079  (real SUNAT emission DISABLED)"
     ;;
   seed-demo)
-    compose exec -T odoo odoo shell -d retail_peru_lab --no-http < scripts/seed_demo.py
+    compose exec -T odoo sh -c 'exec odoo shell -d retail_peru_lab --no-http --db_host="$HOST" --db_port="$PORT" --db_user="$USER" --db_password="$PASSWORD"' < scripts/seed_demo.py
     ;;
   check-demo)
-    compose exec -T odoo odoo shell -d retail_peru_lab --no-http < scripts/check_demo.py
+    compose exec -T odoo sh -c 'exec odoo shell -d retail_peru_lab --no-http --db_host="$HOST" --db_port="$PORT" --db_user="$USER" --db_password="$PASSWORD"' < scripts/check_demo.py
     ;;
   install-addon|upgrade-addon)
     initialize
