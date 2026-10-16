@@ -46,12 +46,12 @@ jobs:
       - name: Seed demo shop on actual Odoo 19 ORM
         run: |
           cd experiments/retail-pos-lab
-          docker compose --env-file .env.local -f compose.yaml run --rm --no-deps odoo \\
+          docker compose --env-file .env.local -f compose.yaml run --rm --no-deps odoo \
             --no-http --stop-after-init -d retail_peru_lab -i stock,point_of_sale,l10n_pe_pos
           docker compose --env-file .env.local -f compose.yaml up -d --wait odoo
-          docker compose --env-file .env.local -f compose.yaml exec -T odoo \\
+          docker compose --env-file .env.local -f compose.yaml exec -T odoo \
             odoo shell -d retail_peru_lab --no-http < scripts/seed_demo.py
-          docker compose --env-file .env.local -f compose.yaml exec -T odoo \\
+          docker compose --env-file .env.local -f compose.yaml exec -T odoo \
             odoo shell -d retail_peru_lab --no-http < scripts/check_demo.py
       - name: Launch Odoo and verify HTTP readiness
         run: |

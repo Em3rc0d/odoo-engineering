@@ -75,7 +75,7 @@ case "$TASK" in
     compose up -d --wait postgres
     # -i is safe for the existing database: installs missing modules; never deletes data.
     compose stop odoo
-    if ! compose run --rm --no-deps odoo --no-http --stop-after-init \\
+    if ! compose run --rm --no-deps odoo --no-http --stop-after-init \
         -d retail_peru_lab -i base,account,stock,l10n_pe,point_of_sale,l10n_pe_pos,oe_pe_cpe_lab; then
       echo "Odoo module installation FAILED; review logs." >&2
       exit 1
