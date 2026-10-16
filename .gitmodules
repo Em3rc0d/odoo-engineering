@@ -1,0 +1,3 @@
+[submodule "external/rally"]
+	path = external/rally
+	url = https://github.com/em3rc0dTh/Rally.git

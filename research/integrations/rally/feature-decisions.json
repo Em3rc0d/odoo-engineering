@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "updated": "2026-10-16",
+  "source_repository": "em3rc0dTh/Rally",
+  "source_commit": "b4726668b7a88d1c1cd58ed80c04c1d48d120482",
+  "policy": "PIN_AS_SUBMODULE_DO_NOT_COPY_SOURCE_WITHOUT_RIGHTS",
+  "legend": {
+    "ODOO": "Odoo/odoo-engineering is source of commercial truth",
+    "RALLY": "Rally is source of operational assurance",
+    "SHARED_PATTERN": "Learn from both, implement and validate separately"
+  },
+  "features": [
+    {
+      "id": "odoo_pos",
+      "feature": "POS, sales, cash sessions and stock",
+      "authority": "ODOO",
+      "reuse": "ODOO_NATIVE",
+      "priority": "MVP",
+      "source_paths": "point_of_sale, sale, stock",
+      "caveat": "Odoo handles writes; Rally has no POS"
+    },
+    {
+      "id": "odoo_billing",
+      "feature": "Peruvian electronic invoicing / SUNAT",
+      "authority": "ODOO",
+      "reuse": "NEW_INTEGRATION",
+      "priority": "MVP_GATE",
+      "source_paths": "l10n_pe, l10n_pe_pos",
+      "caveat": "Provider/EDI and fiscal certification not proven"
+    },
+    {
+      "id": "product_catalog",
+      "feature": "Products, inventory, purchase and variants",
+      "authority": "ODOO",
+      "reuse": "ODOO_NATIVE",
+      "priority": "MVP",
+      "source_paths": "stock, purchase",
+      "caveat": "ERP stores master records and balances"
+    },
+    {
+      "id": "owl_dashboard",
+      "feature": "Commercial sales dashboard",
+      "authority": "ODOO",
+      "reuse": "EVALUATE_CANDIDATE",
+      "priority": "MVP_OPTIONAL",
+      "source_paths": "addons/oe_sales_dashboard",
+      "caveat": "Odoo 19 runtime tests and real KPI definition required"
+    },
+    {
+      "id": "crm_sales_tasks",
+      "feature": "CRM and sale-to-project task link",
+      "authority": "ODOO",
+      "reuse": "EVALUATE_CANDIDATE",
+      "priority": "POST_MVP",
+      "source_paths": "addons/oe_crm_task_bridge, addons/oe_sale_task_bridge",
+      "caveat": "No duplicate lifecycle ownership"
+    },
+    {
+      "id": "workshop_pricing",
+      "feature": "Dimension quotes and purchase boards",
+      "authority": "ODOO",
+      "reuse": "EVALUATE_CANDIDATE",
+      "priority": "VERTICAL_ONLY",
+      "source_paths": "addons/oe_workshop_quote, addons/oe_purchase_board",
+      "caveat": "Not general retail MVP"
+    },
+    {
+      "id": "custody",
+      "feature": "Exclusive active custody and audited handovers",
+      "authority": "RALLY",
+      "reuse": "KEEP_UPSTREAM",
+      "priority": "VERTICAL_ONLY",
+      "source_paths": "rally/app.py, rally/storage.py",
+      "caveat": "Not generic retail stock movement; no transplant"
+    },
+    {
+      "id": "workorders",
+      "feature": "Work order operational evidence and completion checks",
+      "authority": "RALLY",
+      "reuse": "KEEP_UPSTREAM",
+      "priority": "VERTICAL_ONLY",
+      "source_paths": "rally/app.py, rally/worker.py",
+      "caveat": "ERP work order remains authoritative; Rally verifies"
+    },
+    {
+      "id": "exception_engine",
+      "feature": "Reconciliation, cases, policy aging and recovery",
+      "authority": "RALLY",
+      "reuse": "KEEP_UPSTREAM",
+      "priority": "POST_MVP",
+      "source_paths": "rally/erp_policies.py, rally/worker.py",
+      "caveat": "Optional cross-system assurance, not POS transaction engine"
+    },
+    {
+      "id": "erp_read_bridge",
+      "feature": "Odoo JSON-2 read-only state adapters",
+      "authority": "RALLY",
+      "reuse": "KEEP_UPSTREAM",
+      "priority": "POST_MVP",
+      "source_paths": "adapters/odoo_json2.py, adapters/odoo_enterprise_cli.py, rally/erp_contract.py",
+      "caveat": "Customer API eligibility and permissions must be verified"
+    },
+    {
+      "id": "gps_traccar",
+      "feature": "Fleet GPS and Traccar evidence",
+      "authority": "RALLY",
+      "reuse": "KEEP_UPSTREAM",
+      "priority": "OUT_OF_SCOPE",
+      "source_paths": "adapters/traccar.py, compose.traccar.yaml, docs/17-traccar-self-hosted.md",
+      "caveat": "Location isn't completion proof"
+    },
+    {
+      "id": "rfid_edge",
+      "feature": "RFID ingestion and spool",
+      "authority": "RALLY",
+      "reuse": "KEEP_UPSTREAM",
+      "priority": "OUT_OF_SCOPE",
+      "source_paths": "adapters/rfid.py, adapters/rfid_ingest_cli.py",
+      "caveat": "Hardware/operator evidence remains separate"
+    },
+    {
+      "id": "temporal",
+      "feature": "Temporal read-only review workflow",
+      "authority": "RALLY",
+      "reuse": "KEEP_UPSTREAM",
+      "priority": "OUT_OF_SCOPE",
+      "source_paths": "workflows/",
+      "caveat": "Optional; not a necessary SaaS dependency"
+    },
+    {
+      "id": "tenant_auth",
+      "feature": "Tenant isolation, credentials and role audit",
+      "authority": "SHARED_PATTERN",
+      "reuse": "REIMPLEMENT_PER_PLATFORM",
+      "priority": "REQUIRED",
+      "source_paths": "rally/security.py, rally/app.py",
+      "caveat": "Do not duplicate Odoo identity or store its business records"
+    },
+    {
+      "id": "transaction_safety",
+      "feature": "Idempotency, constraints, migrations, locking",
+      "authority": "SHARED_PATTERN",
+      "reuse": "ADOPT_DESIGN_ONLY",
+      "priority": "REQUIRED",
+      "source_paths": "rally/storage.py",
+      "caveat": "Odoo has its own ORM and transaction semantics; no direct DB transplant"
+    },
+    {
+      "id": "ops_compose",
+      "feature": "Caddy, Compose, nonroot, readiness",
+      "authority": "SHARED_PATTERN",
+      "reuse": "ADOPT_DESIGN_ONLY",
+      "priority": "REQUIRED",
+      "source_paths": "compose.production.yaml, ops/",
+      "caveat": "Rally compose is not an Odoo customer distribution"
+    },
+    {
+      "id": "backup_restore",
+      "feature": "Backup, restore, recovery validation",
+      "authority": "SHARED_PATTERN",
+      "reuse": "ADAPT_PROCEDURES",
+      "priority": "REQUIRED",
+      "source_paths": "ops/backup.sh, ops/restore.sh",
+      "caveat": "Odoo backup must cover PostgreSQL AND filestore"
+    },
+    {
+      "id": "odoo_lab",
+      "feature": "Pinned Odoo 19 local lab",
+      "authority": "SHARED_PATTERN",
+      "reuse": "REFERENCE_OR_EXTRACT_AFTER_LICENSE",
+      "priority": "EARLY",
+      "source_paths": "compose.odoo-lab.yaml, ops/odoo_lab.sh",
+      "caveat": "Lab isolated; not yet an installable commercial tenant template"
+    },
+    {
+      "id": "test_harness",
+      "feature": "Python, PostgreSQL, Compose tests and CI",
+      "authority": "SHARED_PATTERN",
+      "reuse": "ADAPT_TEST_STRATEGY",
+      "priority": "REQUIRED",
+      "source_paths": ".github/workflows/ci.yml, tests/",
+      "caveat": "Rally CI doesn't certify Odoo addons or live providers"
+    },
+    {
+      "id": "ui_shell",
+      "feature": "Mission Control UX and dashboard",
+      "authority": "RALLY",
+      "reuse": "KEEP_UPSTREAM",
+      "priority": "REFERENCE",
+      "source_paths": "rally/web/",
+      "caveat": "Do not impose Rally web interface on Odoo"
+    },
+    {
+      "id": "marketing",
+      "feature": "Customer interviews, business model and ROI",
+      "authority": "SHARED_PATTERN",
+      "reuse": "REFERENCE",
+      "priority": "EARLY",
+      "source_paths": "docs/01-market-feasibility.md, docs/08-commercial-validation.md",
+      "caveat": "No evidence of paying subscribers"
+    },
+    {
+      "id": "trademark",
+      "feature": "Product naming and legal boundaries",
+      "authority": "SHARED_PATTERN",
+      "reuse": "REVIEW",
+      "priority": "REQUIRED",
+      "source_paths": "docs/03-open-source-catalog.md, AGENTS.md",
+      "caveat": "No upstream repository-wide license; brand clearance needed"
+    }
+  ]
+}

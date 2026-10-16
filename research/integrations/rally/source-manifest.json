@@ -1,0 +1,485 @@
+{
+  "schema_version": "1.0",
+  "captured_on": "2026-10-16",
+  "repository": "em3rc0dTh/Rally",
+  "ref": "b4726668b7a88d1c1cd58ed80c04c1d48d120482",
+  "tree_sha": "b4726668b7a88d1c1cd58ed80c04c1d48d120482",
+  "total_tree_entries": 104,
+  "total_file_entries": 94,
+  "mode": "git-submodule",
+  "location": "external/rally",
+  "license_assessment": "NO_REPOSITORY_WIDE_LICENSE_OBSERVED; reference only, do not assume rights to copy/relicense",
+  "ci_evidence": "https://github.com/em3rc0dTh/Rally/actions/runs/38579622200",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "sha": "5969e8b60f41a618632a9f940e06ba0f2a0e50d2",
+      "size_bytes": 84
+    },
+    {
+      "path": ".env.connector.example",
+      "sha": "1ca53c37177d10825f9c17f50923db0a57c3ac4c",
+      "size_bytes": 876
+    },
+    {
+      "path": ".env.example",
+      "sha": "afa4187949e88d6d7fb54f523e4e9bb2c6733a2a",
+      "size_bytes": 391
+    },
+    {
+      "path": ".env.odoo-enterprise.example",
+      "sha": "77b44de383739e262937682a8e0a4e257c120bd1",
+      "size_bytes": 752
+    },
+    {
+      "path": ".env.production.example",
+      "sha": "cb57d2f991eed54a798b660be62c74eb90e94077",
+      "size_bytes": 264
+    },
+    {
+      "path": ".env.traccar.example",
+      "sha": "de9683758651045969172f4ad3a26578d5d94761",
+      "size_bytes": 614
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha": "56fd654d07906ab69755fdb54b2500e90fa4bd33",
+      "size_bytes": 5337
+    },
+    {
+      "path": ".gitignore",
+      "sha": "2f3b285d59a8c7cca09778cccb423ea22a41d652",
+      "size_bytes": 331
+    },
+    {
+      "path": "AGENTS.md",
+      "sha": "a7fbb057a0c169ce8b6e0517eb5f69cbd0f66723",
+      "size_bytes": 1197
+    },
+    {
+      "path": "Dockerfile",
+      "sha": "305499fff9615f1b163332c042f497c9dc99508b",
+      "size_bytes": 921
+    },
+    {
+      "path": "MANIFEST.in",
+      "sha": "8795d79c945c79af5c475d80769d159240c9f05e",
+      "size_bytes": 173
+    },
+    {
+      "path": "README.md",
+      "sha": "8376b5eb0f3fce5683d2e0ba77648b9eb66b7155",
+      "size_bytes": 12246
+    },
+    {
+      "path": "adapters/__init__.py",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size_bytes": 0
+    },
+    {
+      "path": "adapters/ingest_cli.py",
+      "sha": "75fbfde6a8f787e29d8b878729927a40be7d51c0",
+      "size_bytes": 3077
+    },
+    {
+      "path": "adapters/odoo_enterprise_cli.py",
+      "sha": "8fe6529921cfa890722fa72c11875310fd137b7a",
+      "size_bytes": 5458
+    },
+    {
+      "path": "adapters/odoo_json2.py",
+      "sha": "df1cefcdaed576dab3c4a73e11acb7a872f037db",
+      "size_bytes": 1944
+    },
+    {
+      "path": "adapters/odoo_sync_cli.py",
+      "sha": "865714a8eef1554d2dd177d0a03359251dcbe34d",
+      "size_bytes": 3940
+    },
+    {
+      "path": "adapters/rfid.py",
+      "sha": "d52d16bdbaaecf1e1e11d71b4aaf400f76243c3e",
+      "size_bytes": 1273
+    },
+    {
+      "path": "adapters/rfid_ingest_cli.py",
+      "sha": "55cd586937a85d7a1a38b76a9aa5b89d500869e8",
+      "size_bytes": 4088
+    },
+    {
+      "path": "adapters/runner.py",
+      "sha": "539834eee137a3e086ef70ebf048e978d5148a19",
+      "size_bytes": 1503
+    },
+    {
+      "path": "adapters/traccar.py",
+      "sha": "1a9d8e32b23aa31c5954976290f680fd4eb21aa1",
+      "size_bytes": 2318
+    },
+    {
+      "path": "adapters/transport.py",
+      "sha": "c1fff74245ce71eb0704e5c511ddb7e16ea2d81f",
+      "size_bytes": 1833
+    },
+    {
+      "path": "compose.odoo-enterprise.yaml",
+      "sha": "a632a647231ed4184305bcdc8fa0e160d90565bf",
+      "size_bytes": 805
+    },
+    {
+      "path": "compose.odoo-lab.yaml",
+      "sha": "382cbcd51af8e05915cb6ec55fd52fe818c4a1cb",
+      "size_bytes": 1631
+    },
+    {
+      "path": "compose.production.yaml",
+      "sha": "c4e6c4f429917bc42237a77f03f52cde75c2aa85",
+      "size_bytes": 2516
+    },
+    {
+      "path": "compose.traccar.yaml",
+      "sha": "dacb6b641d68eef9dbfc05956e210045459216b9",
+      "size_bytes": 2118
+    },
+    {
+      "path": "compose.yaml",
+      "sha": "138223e3df873036616b13142afbd1b06e61f311",
+      "size_bytes": 708
+    },
+    {
+      "path": "docs/00-product-vision.md",
+      "sha": "3af0802fda9a03406b1ea41ffff39b8ae218ffc9",
+      "size_bytes": 3427
+    },
+    {
+      "path": "docs/01-market-feasibility.md",
+      "sha": "624ad3a21eae10c3fd5a486c0bc2e75dd228adc5",
+      "size_bytes": 4555
+    },
+    {
+      "path": "docs/02-architecture.md",
+      "sha": "8e0898a0d6cb188b21cb1becb43edeb1bcda3a03",
+      "size_bytes": 4062
+    },
+    {
+      "path": "docs/03-open-source-catalog.md",
+      "sha": "fe0dbd6545a140644eb769441491050ee5c451ff",
+      "size_bytes": 4671
+    },
+    {
+      "path": "docs/04-odoo-engineering-audit.md",
+      "sha": "09abaf189d6db01270df5274d533f2c922c039d9",
+      "size_bytes": 3009
+    },
+    {
+      "path": "docs/05-roadmap.md",
+      "sha": "fe9fe054ce5430a939eae2565b5a0ffc0e9737b3",
+      "size_bytes": 2789
+    },
+    {
+      "path": "docs/06-security-and-risks.md",
+      "sha": "4ae2429d9d706edbb77e028b4835032ea84de44f",
+      "size_bytes": 4076
+    },
+    {
+      "path": "docs/07-integration-guide.md",
+      "sha": "f1425b7742c6edb3ed71b4237b17107e4749fc54",
+      "size_bytes": 7505
+    },
+    {
+      "path": "docs/08-commercial-validation.md",
+      "sha": "d3031c5dc33b86113609b76fb131179b000081db",
+      "size_bytes": 4120
+    },
+    {
+      "path": "docs/09-resumen-ejecutivo-es.md",
+      "sha": "233120051a255761dff535ab6f1d2d906014e3ff",
+      "size_bytes": 4179
+    },
+    {
+      "path": "docs/10-production-operations.md",
+      "sha": "00f931b2c6451636ab68c34ee96315a3c775fa20",
+      "size_bytes": 13741
+    },
+    {
+      "path": "docs/11-release-0.2.md",
+      "sha": "1dc984e7c4b5365549fdc9dc70b462c5d1693ed9",
+      "size_bytes": 4824
+    },
+    {
+      "path": "docs/12-post-release-review.md",
+      "sha": "2743613df881d9c6dcdcec1a7021acc76ab85aec",
+      "size_bytes": 3957
+    },
+    {
+      "path": "docs/13-production-readiness.md",
+      "sha": "ba76de8eef77e3dfa78dd2bebcd439a9c02003ff",
+      "size_bytes": 6329
+    },
+    {
+      "path": "docs/14-release-candidate.md",
+      "sha": "a410eb29f2545bbe67c41d2897f9b689adf52f2d",
+      "size_bytes": 2980
+    },
+    {
+      "path": "docs/15-module-verification-2026-10-13.md",
+      "sha": "fad4c95bf633963e9349be31854554f38c5a84cb",
+      "size_bytes": 6229
+    },
+    {
+      "path": "docs/16-mission-control-ui.md",
+      "sha": "a12252ba70853256c341e4217862bae607aea8e2",
+      "size_bytes": 5144
+    },
+    {
+      "path": "docs/17-traccar-self-hosted.md",
+      "sha": "1c9c1cf1a59a33afbd79a0f2e4fbb3a6c1eaf6b3",
+      "size_bytes": 8235
+    },
+    {
+      "path": "docs/18-odoo-enterprise-domain-expansion.md",
+      "sha": "73cc24ca936e7d5b6802a9f1d6288c36e1937023",
+      "size_bytes": 12442
+    },
+    {
+      "path": "docs/19-odoo-enterprise-bridge.md",
+      "sha": "d40e2f1b728edc458346ae7d8ea7ba75e5a5209a",
+      "size_bytes": 9574
+    },
+    {
+      "path": "docs/20-odoo-self-hosted-lab.md",
+      "sha": "56090766306f5544d29a66a33bce6372a9f3cfb1",
+      "size_bytes": 8376
+    },
+    {
+      "path": "ops/Caddyfile",
+      "sha": "159e58c32a2be1912fb3984d6a70a71d89a8b220",
+      "size_bytes": 236
+    },
+    {
+      "path": "ops/__init__.py",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size_bytes": 0
+    },
+    {
+      "path": "ops/backup.sh",
+      "sha": "4a72d988f202b20984469c33b0c06a7e7f2eee7c",
+      "size_bytes": 561
+    },
+    {
+      "path": "ops/initdb/01-runtime-role.sh",
+      "sha": "4fabd2b3c75dbbf77dc8060114e8fd4ae74a0bbb",
+      "size_bytes": 669
+    },
+    {
+      "path": "ops/odoo_lab.sh",
+      "sha": "33882a53fe0d9031cc2b4bfb7bd7ad93b604059c",
+      "size_bytes": 3120
+    },
+    {
+      "path": "ops/preflight.py",
+      "sha": "8252d25826a81ab66933cc086a0bf72ec35a56f6",
+      "size_bytes": 3428
+    },
+    {
+      "path": "ops/restore.sh",
+      "sha": "894b9996b22dd338457a6fe019735ee9074eab34",
+      "size_bytes": 718
+    },
+    {
+      "path": "ops/smoke_local.sh",
+      "sha": "b1d3d973c078d017806a49081b9e0a7990b87e93",
+      "size_bytes": 1694
+    },
+    {
+      "path": "ops/smoke_production.sh",
+      "sha": "89a0b66a59c25a822bd3c358a3bd9ba2f1a91250",
+      "size_bytes": 3971
+    },
+    {
+      "path": "pyproject.toml",
+      "sha": "a146f09620c68ee7836c6d0cef180eeda68d2eeb",
+      "size_bytes": 736
+    },
+    {
+      "path": "rally/__init__.py",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size_bytes": 0
+    },
+    {
+      "path": "rally/admin.py",
+      "sha": "f461a8dac1b4ae7136591afcf0bc90d6d6c7f488",
+      "size_bytes": 1462
+    },
+    {
+      "path": "rally/app.py",
+      "sha": "a7a0c99c3f0afdb2f36af3a0717c5d216e06a636",
+      "size_bytes": 47089
+    },
+    {
+      "path": "rally/erp_contract.py",
+      "sha": "1d17de661ef8680ab4367db1942cd07993880f39",
+      "size_bytes": 4217
+    },
+    {
+      "path": "rally/erp_policies.py",
+      "sha": "8d50f7ca90e419ffc0b15e9fd5e64b100bdee408",
+      "size_bytes": 3079
+    },
+    {
+      "path": "rally/migrate_sqlite.py",
+      "sha": "f3b38a162a3454a6cd961b136e2dccd915be55ed",
+      "size_bytes": 1793
+    },
+    {
+      "path": "rally/security.py",
+      "sha": "f7c9dec82d83d1325a33bfda4f099e573816b917",
+      "size_bytes": 5430
+    },
+    {
+      "path": "rally/storage.py",
+      "sha": "94ffc14e0d143bdfa4909371e02ad4035d1b185f",
+      "size_bytes": 12905
+    },
+    {
+      "path": "rally/web/app.js",
+      "sha": "c9bcf0d61eefaa52c8abf0262966453e1be81f4e",
+      "size_bytes": 12523
+    },
+    {
+      "path": "rally/web/index.html",
+      "sha": "4f9c5dac599ddb7261872e64994b4ea7414f9b14",
+      "size_bytes": 11386
+    },
+    {
+      "path": "rally/web/shell.css",
+      "sha": "41af04708d6f69b8f624f848b45eed5c079f7928",
+      "size_bytes": 13848
+    },
+    {
+      "path": "rally/web/shell.js",
+      "sha": "9011e295c3f24ef02b00f6a81bf0d58bbee07129",
+      "size_bytes": 37461
+    },
+    {
+      "path": "rally/worker.py",
+      "sha": "f38ede87fd739b30a7b836586b8d1fcd6b9e0d57",
+      "size_bytes": 1553
+    },
+    {
+      "path": "requirements.lock",
+      "sha": "6acd5d3507c02c68158ca3ca12c76f5d36cdad10",
+      "size_bytes": 50836
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha": "4a9ebc24bebe93627cd82d1ef0bdbcdc9ea1ce49",
+      "size_bytes": 2478
+    },
+    {
+      "path": "tests/test_adapters.py",
+      "sha": "b764fee1d985fc296d8e50c93fa92805d9c968b7",
+      "size_bytes": 1004
+    },
+    {
+      "path": "tests/test_erp_enterprise.py",
+      "sha": "d302558c0ad39f8646f47e8222b83d27978bc9d9",
+      "size_bytes": 11001
+    },
+    {
+      "path": "tests/test_erp_policies.py",
+      "sha": "6d7ff4d98bc38c7dfc9bacb72996f7c49d9b3925",
+      "size_bytes": 4214
+    },
+    {
+      "path": "tests/test_geo.py",
+      "sha": "082775956244076a8d3fc6234300d932496cc377",
+      "size_bytes": 2950
+    },
+    {
+      "path": "tests/test_modules_authorization.py",
+      "sha": "84f7b8cff4822f089e52a311253bc5d1502f2a5c",
+      "size_bytes": 6735
+    },
+    {
+      "path": "tests/test_modules_connectors.py",
+      "sha": "fab1f8876efeaa6aed851b4c1d73d01f42b8ffc3",
+      "size_bytes": 4808
+    },
+    {
+      "path": "tests/test_modules_http_worker.py",
+      "sha": "72abe3a385283b2d734aced918c69deea523e2ad",
+      "size_bytes": 2034
+    },
+    {
+      "path": "tests/test_modules_migration_admin.py",
+      "sha": "6f1ef1c15428f61062683f1facc2e6de340c7692",
+      "size_bytes": 2637
+    },
+    {
+      "path": "tests/test_modules_rfid.py",
+      "sha": "b41006eb9f3bd2b3ed355e78d5623d7ebf1638d7",
+      "size_bytes": 2876
+    },
+    {
+      "path": "tests/test_modules_temporal.py",
+      "sha": "925d236bb77e7ac3660c238f46d59f01ae79bc39",
+      "size_bytes": 1421
+    },
+    {
+      "path": "tests/test_odoo_mapping.py",
+      "sha": "dde6f26cc93560f0023fc1bf032ca3538f89baec",
+      "size_bytes": 1373
+    },
+    {
+      "path": "tests/test_postgres.py",
+      "sha": "b363fc65f946b5a11920a28780eaa97768e934b8",
+      "size_bytes": 5683
+    },
+    {
+      "path": "tests/test_preflight.py",
+      "sha": "febe3e3b5b7776952ebbe66bb6c6a8c47efb2637",
+      "size_bytes": 1607
+    },
+    {
+      "path": "tests/test_rally.py",
+      "sha": "a45901447dc5a408f4a33a77d338454c7d9c36ab",
+      "size_bytes": 5413
+    },
+    {
+      "path": "tests/ui_dataflow.cjs",
+      "sha": "3b329e36087676d07993cedc57371278c84d9972",
+      "size_bytes": 3951
+    },
+    {
+      "path": "tests/ui_shell.cjs",
+      "sha": "617e8c06354e6fdb941f6de998778a513001a273",
+      "size_bytes": 4360
+    },
+    {
+      "path": "uv.lock",
+      "sha": "5e41df050e3041b2d164ee8a5096901375d962b2",
+      "size_bytes": 205546
+    },
+    {
+      "path": "workflows/__init__.py",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size_bytes": 0
+    },
+    {
+      "path": "workflows/review.py",
+      "sha": "746826ff7bd9ac0e3834e700962f44dbc9a9e5d5",
+      "size_bytes": 1583
+    },
+    {
+      "path": "workflows/start_review.py",
+      "sha": "767aa5b749b9eb380063d77bc7fee1b392dd007a",
+      "size_bytes": 1237
+    },
+    {
+      "path": "workflows/worker.py",
+      "sha": "6d14f7d7a79dca316dc8e2a28aa4c1f711883ddc",
+      "size_bytes": 505
+    }
+  ]
+}

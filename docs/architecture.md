@@ -17,3 +17,9 @@
 - `GENERATED`: material original de este repositorio.
 
 Nunca usar `OFFICIAL` para fuentes comunitarias y nunca convertir una recomendación en un test pasado.
+
+## External Rally source boundary (2026-10-16)
+
+`external/rally` is an immutable-by-policy gitlink to an independent repository. It supplies architectural and implementation evidence for authorization, custody, read-only Odoo JSON-2 state projection, reconciliations, GPS/RFID and ops. It is not placed under `addons/`, the Odoo module loading path, the Odoo filestore, or the commercial runtime image. See `research/integrations/rally/`.
+
+**Authority split:** Odoo = commercial transactions and master data. Rally = observations, custody and recoverable exceptions. Interfaces, if later authorized, must be API-based and versioned with source provenance, tenant grants and stale-data semantics. No shared database and no assumed bidirectional writes.

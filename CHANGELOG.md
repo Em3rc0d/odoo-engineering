@@ -13,3 +13,9 @@
 
 ## 0.1.0 — 2026-10-13
 - Evidence repository foundation and findings.
+
+## 2026-10-16 — Pinned Rally source and ownership integration
+
+- Added Rally as a pinned full-tree external Git submodule; no upstream files copied or changed.
+- Recorded 94 tracked files and 22 capability ownership decisions under `research/integrations/rally/`.
+- Preserved Odoo-centric addon and runtime boundaries; customer deployment and license gates remain open.
