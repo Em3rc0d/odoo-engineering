@@ -34,10 +34,10 @@ The imported baseline tree now contains 11 source addon folders: the 7 `odoo_pra
 
 **License caveat:** particularly `ica_web_responsive` has distinct third-party authorship and should be treated as **quarantined**, not distributed/installed pending per-file provenance and compatibility verification. No tests were run at the user's request.
 
-## Rally — versioned external reference (2026-10-16)
+## Rally — independent full source snapshot (2026-10-16)
 
-The full Rally upstream tree is linked at `external/rally` as a **read-only Git submodule**, pinned to `b4726668b7a88d1c1cd58ed80c04c1d48d120482`. Rally remains its own operational-assurance product; this does **not** merge its custody service into Odoo or automatically license its code for redistribution.
+The entire 94-file source snapshot from `em3rc0dTh/Rally` is now **copied directly** into [`external/rally/`](external/rally/) as ordinary Git files, pinned by recorded source commit `b4726668b7a88d1c1cd58ed80c04c1d48d120482`. This is **not a Git submodule**; a normal `git clone` contains all imported source files. The source Rally repository has not been modified.
 
-Use `git clone --recurse-submodules` or `git submodule update --init external/rally`. See [integration analysis](research/integrations/rally/README.md), [capability ownership](research/integrations/rally/feature-decisions.md), [full source manifest](research/integrations/rally/source-manifest.json) and [commercial MVP boundary](research/integrations/rally/mvp-boundary.md).
+The source-to-target Git blob SHA + file mode comparison passed **94/94** at import time. The original Rally commit history is not copied; this repository carries an exact source **snapshot**. Updates do not sync automatically. Refer to [integration guide](research/integrations/rally/README.md), [full file manifest](research/integrations/rally/source-manifest.json), [22 capability decisions](research/integrations/rally/feature-decisions.md) and [commercial MVP scope](research/integrations/rally/mvp-boundary.md).
 
-Odoo remains responsible for POS, sales, inventory, legal invoicing and cash. Rally retains equipment custody, evidence, GPS/RFID and operational exception resolution. Production deployment, API integration and Odoo addon installation remain separate quality gates.
+**Distinct responsibilities:** Odoo handles POS, sales, inventory, cash and fiscal documents; Rally handles custody, operational evidence and reconciliation as a separate optional application. Physical copying does not automatically install Rally as an Odoo addon, integrate it at runtime or qualify either system for production.

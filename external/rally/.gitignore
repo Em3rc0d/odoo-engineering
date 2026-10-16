@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+data/
+*.db
+*.sqlite*
+.DS_Store
+.env.*
+!.env.example
+!.env.production.example
+!.env.connector.example
+backups/
+*.dump
+*.partial
+*.egg-info/
+build/
+dist/
+
+!.env.traccar.example
+
+!.env.odoo-enterprise.example
+
+# Self-hosted Odoo lab local secrets/configuration (never commit)
+.local/

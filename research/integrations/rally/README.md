@@ -1,52 +1,60 @@
-# Rally pinned reference and integration contract
+# Rally directly imported into odoo-engineering
 
-Captured 2026-10-16; upstream: https://github.com/em3rc0dTh/Rally; pinned commit: `b4726668b7a88d1c1cd58ed80c04c1d48d120482`.
+Source: https://github.com/em3rc0dTh/Rally  
+Pinned source revision: `b4726668b7a88d1c1cd58ed80c04c1d48d120482`  
+Imported on: 2026-10-16  
+Import mode: **physical Git-tracked snapshot, not a submodule**.
 
-## What was brought over
+## What is actually inside the target
 
-`external/rally/` is a **Git submodule** pointing to the full Rally repository at the recorded SHA. On recursive clone, it checks out **all upstream files**, including application, adapters, tests, operations, docs, optional Traccar/Odoo labs, and workflows. We deliberately did not bulk-copy or modify Rally's source files.
+All **94 upstream tracked files** are committed directly as regular files under [`external/rally/`](../../../external/rally/) with unchanged relative paths and Git blob SHAs. They include:
+
+- `rally/`: FastAPI app, persistence, authorization, worker, ERP policies, Mission Control web interface;
+- `adapters/`: Odoo JSON-2 / enterprise read-only state bridge, GPS/Traccar, RFID ingestion;
+- `workflows/`: optional Temporal review examples;
+- `ops/`: backup/restore, runbooks, preflight, smoke checks, Odoo local lab script;
+- `tests/` and `.github/workflows/ci.yml`: test suites and original CI configuration;
+- `docs/`: vision, market research, architecture, Odoo integration, release/operations and commercial feasibility;
+- Docker/Compose, Python dependency locks, `README.md`, `AGENTS.md`, example environment files.
+
+**Git independence:** `git clone https://github.com/Em3rc0d/odoo-engineering.git` now suffices; no `--recurse-submodules` is needed. It remains an exact imported snapshot, **not the complete upstream Git history**, and future upstream changes do not appear automatically. We did not make any writes to Rally's own repository.
+
+## Verified source integrity
+
+The full upstream Git tree and the target import tree were compared: **94/94 same path, Git blob SHA and mode; 0 missing or extra tracked files inside the imported directory**. Original source commit and file metadata are listed in [source-manifest.json](source-manifest.json). This is source-level integrity only, not a completed application/runtime test.
+
+## How to work with the copied application
 
 ```bash
-git clone --recurse-submodules https://github.com/Em3rc0d/odoo-engineering.git
-cd odoo-engineering
-git submodule status
-# For an existing clone:
-git submodule update --init external/rally
+git clone https://github.com/Em3rc0d/odoo-engineering.git
+cd odoo-engineering/external/rally
+# Review README.md and AGENTS.md here before running anything.
+# Optionally, in an isolated environment with Docker available:
+cp .env.example .env
+# Set a strong distinct RALLY_ADMIN_KEY locally (never commit secrets).
+docker compose up --build -d
 ```
 
-GitHub's web interface shows a submodule link; to inspect actual upstream files, follow its commit. The source manifest [source-manifest.json](source-manifest.json) inventories every tracked file from this pinned commit with blob SHA and size.
+**Important:** Rally's existing Compose file expects relative paths from `external/rally/`, not the parent `odoo-engineering`. Its nested `.github/workflows/ci.yml` is preserved verbatim but does **not** run automatically as a GitHub Actions workflow in the root repository. No extra CI or deployment was activated by this import.
 
-## Explicit boundaries
+## Separation of responsibilities
 
-- `odoo-engineering/addons/`: Odoo-specific addons, each separately licensed, attributed, tested and installed.
-- `external/rally/`: upstream source snapshot for inspection, **not** installable Odoo addons, not a vendored/copied codebase, and not a production dependency.
-- `research/integrations/rally/`: ownership map and commercial selection gates, without rewriting Rally's mission.
-- Odoo handles POS, products, inventory, sales, invoices and cash. Rally independently handles custody, evidence, exception recovery, GPS/RFID observations and read-only ERP statuses.
-- No cross-repo integration, data migration, auth federation, billing, or production deployment was performed in this change.
+- `addons/`: Odoo addon candidates, subject to installation/ACL/license/runtime testing.
+- `external/rally/`: independent, complete Rally application source snapshot. Do **not** put this directory in Odoo's addons search path or copy Rally migrations into the ERP database.
+- `research/integrations/rally/`: integration decisions, source manifest and MVP boundary.
+- Odoo handles POS, inventory, sales, cash, invoices and fiscal legal records. Rally handles custody, execution evidence, exceptions, GPS/RFID and read-only ERP state observations.
+- API-based integration is a later optional, separately tested contract. No existing Odoo/Rally functional integration is certified by this import.
 
-## Ownership and licensing
+## Proprietary and third-party considerations
 
-Rally lives under a different GitHub account, and the inspected root has **no blanket LICENSE**. Its documents include company-specific references. This submodule is a non-mutating Git reference, not a grant of rights to extract, commercialize, sublicense or rebrand its code. Confirm intellectual-property ownership and any employment/client obligations before making derivative deployments. Odoo community modules, external vendors and images each retain their own independent terms.
+The user states ownership of both repositories. Their company/client obligations, third-party dependencies, referenced datasets and the product name should still be checked prior to commercialization; a source copy does not replace licensing and product compliance review. Preserve upstream provenance in the manifest. Do not incorporate Enterprise-only Odoo code unless explicitly licensed.
 
-## Evidence by function
+## Next steps
 
-| Capability | Rally files | What is reusable | What is not inherited |
-|---|---|---|---|
-| Tenant-scoped access | `rally/app.py`, `rally/security.py`, `rally/storage.py` | Threat model, tests, audit contracts | Odoo ACL / record rules, SSO or certified IAM |
-| Concurrent custody | `rally/app.py`, `rally/storage.py` | Unique-active-item and idempotency patterns | Inventory reservation or POS concurrency guarantees |
-| Exceptions and recovery | `rally/worker.py`, `rally/erp_policies.py` | Deterministic comparisons and acknowledged resolution | Accounting/payment settlement proof |
-| Odoo bridge | `adapters/odoo_json2.py`, `adapters/odoo_enterprise_cli.py`, `rally/erp_contract.py` | Source scoping and status projections | A complete bidirectional Odoo integration |
-| Traccar / RFID | `adapters/traccar.py`, `adapters/rfid*.py`, `compose.traccar.yaml` | Observation/provenance/freshness patterns | Physical completion or legal custody proof |
-| Deployment and recovery | `compose.production.yaml`, `ops/backup.sh`, `ops/restore.sh` | Runbook and restore drills | Backup of an Odoo filestore or tenant provisioning |
-| Odoo lab | `compose.odoo-lab.yaml`, `ops/odoo_lab.sh` | Isolated reference environment | Retail production distribution |
-| Test quality | `.github/workflows/ci.yml`, `tests/` | CI scenario list and fixture techniques | Tested Odoo addons and live customer acceptance |
+1. Keep owner-specific Odoo addons and the Rally service isolated and runnable from their own roots.
+2. Close the commercial MVP's product, Peru/SUNAT and deployment requirements before implementing.
+3. Prove Odoo Community POS, stock, session-close and refund flows with real database tests.
+4. Design a separate reproducible customer setup (DB **and** filestore, secrets, HTTPS, backup and restore).
+5. Only enable Rally assurance for a contracted use case with verified ROI, source rights and cross-system validation.
 
-## Next steps / gates
-
-1. Confirm rights to reuse code and applicable Odoo/third-party licenses.
-2. Validate Odoo 19 clean installation and required Community modules (`point_of_sale`, `stock`, `purchase`) in a dedicated test DB.
-3. Check each candidate addon for ACLs, install/upgrade paths and actual functionality on Odoo 19.
-4. Build a **separate** repeatable-client delivery template (database + filestore, HTTPS, secrets, restore, tenant-specific configuration); do not turn Rally's custody stack into POS.
-5. Run accepted scenarios for POS, stock, cash, returns and fiscal flow; optionally add Rally assurance only if a paying pilot proves need.
-
-Related: [Decision matrix](feature-decisions.md) · [MVP gates](mvp-boundary.md).
+See [capability matrix](feature-decisions.md) and [MVP boundaries](mvp-boundary.md).

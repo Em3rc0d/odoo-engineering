@@ -1,0 +1,94 @@
+name: Rally validation
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-bookworm
+        env:
+          POSTGRES_USER: rally
+          POSTGRES_PASSWORD: rally-ci-only
+          POSTGRES_DB: rally_ci_admin
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U rally -d rally_ci_admin"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 15
+    env:
+      RALLY_PG_ADMIN_URL: postgresql://rally:rally-ci-only@localhost:5432/rally_ci_admin
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install application and validation dependencies
+        run: python -m pip install -e '.[test,temporal]'
+      - name: Compile Python
+        run: python -m compileall -q rally adapters workflows tests
+      - name: Check cockpit JavaScript syntax
+        run: node --check rally/web/app.js && node --check rally/web/shell.js
+      - name: Validate navigable browser DOM
+        run: |
+          npm install --no-save --ignore-scripts jsdom@26.1.0
+          node tests/ui_shell.cjs
+          node tests/ui_dataflow.cjs
+      - name: Run SQLite and disposable PostgreSQL integration tests
+        run: python -m pytest -q
+      - name: Verify production configuration rejects placeholders
+        run: python -c "from ops.preflight import validate; assert validate({'RALLY_ADMIN_KEY':'weak','POSTGRES_PASSWORD':'weak','RALLY_DOMAIN':'rally.example.com','ACME_EMAIL':'x@example.com'})"
+      - name: Validate production Compose
+        env:
+          RALLY_ADMIN_KEY: "integration-only-abcdefghijklmnopqrstuv1234567890"
+          POSTGRES_PASSWORD: rally-ci-only
+          RALLY_APP_PASSWORD: rally-ci-independent
+          RALLY_DOMAIN: rally.example.com
+          ACME_EMAIL: ci@example.com
+        run: docker compose -f compose.production.yaml config --quiet
+      - name: Validate self-hosted Traccar overlay
+        env:
+          RALLY_ADMIN_KEY: "integration-only-abcdefghijklmnopqrstuv1234567890"
+        run: |
+          cp .env.example .env
+          cp .env.traccar.example .env.traccar
+          docker compose -f compose.yaml -f compose.traccar.yaml --profile gps-sync config --quiet
+          docker compose -f compose.yaml -f compose.traccar.yaml --profile gps-sync config --format json > /tmp/rally-traccar-compose.json
+          python -c "import json; c=json.load(open('/tmp/rally-traccar-compose.json')); s=c['services']; assert s['traccar']['image']=='traccar/traccar:6.16.0-alpine'; assert s['rally']['environment']['RALLY_ALLOWED_HOSTS'].endswith('rally'); assert s['traccar-sync']['environment']['RALLY_URL']=='http://rally:8080'; print('Local GPS overlay validated')"
+          rm -f .env .env.traccar /tmp/rally-traccar-compose.json
+      - name: Validate optional Odoo Enterprise Compose
+        env:
+          RALLY_ADMIN_KEY: "integration-only-abcdefghijklmnopqrstuv1234567890"
+        run: |
+          cp .env.example .env
+          cp .env.odoo-enterprise.example .env.odoo-enterprise
+          docker compose -f compose.yaml -f compose.odoo-enterprise.yaml --profile odoo-enterprise config --quiet
+          rm -f .env .env.odoo-enterprise
+
+      - name: Validate isolated self-hosted Odoo Community lab
+        env:
+          RALLY_ADMIN_KEY: "integration-only-abcdefghijklmnopqrstuv1234567890"
+        run: |
+          cp .env.example .env
+          bash -n ops/odoo_lab.sh
+          bash ops/odoo_lab.sh init
+          docker compose --env-file .env --env-file .env.odoo-lab -f compose.yaml -f compose.odoo-lab.yaml --profile odoo-lab config --quiet
+          docker compose --env-file .env --env-file .env.odoo-lab -f compose.yaml -f compose.odoo-lab.yaml --profile odoo-lab config --format json > /tmp/rally-odoo-lab.json
+          python -c "import json; from pathlib import Path; s=json.load(open('/tmp/rally-odoo-lab.json'))['services']; assert s['odoo-lab']['ports'][0]['host_ip']=='127.0.0.1'; assert 'ports' not in s['odoo-lab-db']; assert s['odoo-lab']['image'].startswith('odoo:19.0'); assert s['odoo-lab-db']['image'].startswith('postgres:16'); conf=Path('.local/odoo-lab/odoo.conf').read_text(); assert 'dbfilter = ^rally_odoo_lab$' in conf; assert 'admin_passwd = ' in conf and 'admin_passwd = admin' not in conf; print('Isolated lab setup, credentials and Compose verified')"
+          test "$(stat -c %a .env.odoo-lab)" = "600"
+          rm -f .env /tmp/rally-odoo-lab.json
+
+      - name: Build application container
+        run: docker build -t rally-ci:latest .
+      - name: Verify installed Docker UI assets
+        run: |
+          docker run --rm --entrypoint python rally-ci:latest -c "from pathlib import Path; import rally; root=Path(rally.__file__).parent/'web'; expected=('index.html','app.js','shell.js','shell.css'); missing=[p for p in expected if not (root/p).is_file()]; assert not missing, 'Packaged UI assets missing: '+', '.join(missing); print('Installed UI assets:', ', '.join(expected))"
+      - name: Boot disposable API and reconciliation worker
+        run: bash ops/smoke_local.sh
+
+      - name: Boot isolated production services with restricted PostgreSQL role
+        run: bash ops/smoke_production.sh

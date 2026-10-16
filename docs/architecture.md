@@ -18,8 +18,12 @@
 
 Nunca usar `OFFICIAL` para fuentes comunitarias y nunca convertir una recomendación en un test pasado.
 
-## External Rally source boundary (2026-10-16)
+## Imported Rally source boundary (2026-10-16)
 
-`external/rally` is an immutable-by-policy gitlink to an independent repository. It supplies architectural and implementation evidence for authorization, custody, read-only Odoo JSON-2 state projection, reconciliations, GPS/RFID and ops. It is not placed under `addons/`, the Odoo module loading path, the Odoo filestore, or the commercial runtime image. See `research/integrations/rally/`.
+The standalone Rally source snapshot is physically versioned under `external/rally/` as a normal directory, not a submodule. All tracked files are recorded in `research/integrations/rally/source-manifest.json` with upstream Git blob SHA and file mode.
 
-**Authority split:** Odoo = commercial transactions and master data. Rally = observations, custody and recoverable exceptions. Interfaces, if later authorized, must be API-based and versioned with source provenance, tenant grants and stale-data semantics. No shared database and no assumed bidirectional writes.
+It is **not** part of Odoo's addon path and should not be added wholesale to Odoo's runtime. If deployed separately, enter `external/rally/` and use its own documented Docker/FastAPI commands. Rally's `rally/`, `adapters/`, `tests/`, `ops/`, `docs/`, `workflows/` and locks remain intact.
+
+**Authority split:** Odoo owns products, POS sales, stock, cash and fiscal invoicing. Rally independently owns custody, evidence, work-order assurance, exceptions and source-state projections. Interfaces require explicit API contracts, per-tenant grants, provenance, freshness labels and bounded access. No shared transactional database is authorized.
+
+**Source lifecycle:** no automatic synchronization from upstream; future imports must choose a reviewed source SHA and validate every path/blob SHA/mode, with local changes isolated and clearly attributed.

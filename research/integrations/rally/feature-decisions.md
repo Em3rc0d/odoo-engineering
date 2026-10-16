@@ -2,7 +2,7 @@
 
 Source commit: [b4726668b7a88d1c1cd58ed80c04c1d48d120482](https://github.com/em3rc0dTh/Rally/tree/b4726668b7a88d1c1cd58ed80c04c1d48d120482). Scope: 22 evaluated capability domains.
 
-Rule: Odoo remains commercial system of record; Rally remains operational verification/exception service. This is classification, not installation/functional parity.
+Rule: Odoo remains commercial system of record; Rally remains operational verification/exception service. The whole source is physically imported under `external/rally/`, but classification does not imply runtime integration or functional parity.
 
 | Domain / function | Primary authority | Treatment in odoo-engineering | Priority | Key source |
 |---|---|---|---|---|
@@ -35,13 +35,13 @@ Rule: Odoo remains commercial system of record; Rally remains operational verifi
 2. **Commercial product vs assurance add-on:** integrate Rally only for a demonstrated operational exception use case (custody/work orders/assets), not for the first generic retail POS.
 3. **Single lifecycle owner:** no second CRM lead or project task model with conflicting truth; bridge events with stable external IDs and explicit per-company grants.
 4. **Separate data planes:** never share PostgreSQL schemas or copy an application database to pretend the systems are one. Use documented API contracts, least privilege, idempotency, stale-data markers and provenance.
-5. **Reproducibility:** the upstream submodule is pinned; upgrades require SHA review, legal check, test evidence, and an explicit integration decision.
-6. **Licensing:** gitlink does not grant reproduction rights. Do not redistribute Rally files inside a commercial Odoo artifact until ownership and licensing are verified.
+5. **Reproducibility:** the imported upstream source snapshot is pinned by SHA in the manifest; updates require a new reviewed source SHA, complete integrity verification, tests and explicit integration decision.
+6. **Licensing:** the user states they own both repositories, but commercial reuse still needs third-party/employee/customer rights review before product redistribution.
 
 ## Evidence and gaps
 
 - `Rally`: latest inspected `main` is CI green for its own simulated/integration scenarios; this does **not** prove live provider credentials, Odoo API entitlements or customer deployment readiness.
-- `odoo-engineering`: Odoo 19 addons are source candidates and are not runtime-certified; no cross-repo functional test was performed for this handoff.
+- `odoo-engineering`: Odoo 19 addons are source candidates and are not runtime-certified; no cross-repo functional test was performed for this physical source import.
 - `Rally` global write serialization is not a design to transplant into Odoo ERP; profile concurrency on the target platform before adoption.
 - `Rally` Odoo lab is separate; it does not configure a second retail client, SUNAT, stock, POS or paid onboarding automatically.
 

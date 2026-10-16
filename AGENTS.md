@@ -9,10 +9,11 @@
 - Never claim a test executed without logs. The MK3 delivery explicitly prohibits testing.
 - Avoid edits to `personal_knowledge` and source GitHub repositories.
 
-## Pinned Rally upstream boundary
+## Imported Rally source boundary
 
-- `external/rally` is a read-only pinned Git submodule, **not** a folder of Odoo addons; never commit modifications inside it or silently advance its gitlink.
-- Read `research/integrations/rally/README.md` and `feature-decisions.md` before cross-repo work. Keep Rally's operational-assurance mission distinct from Odoo ERP source-of-truth writes.
-- Do not copy or relicense Rally's source (no repository-wide license identified) without an independent legal/IP authorization; customer/employer ownership constraints remain open.
-- Any future submodule SHA bump requires a source manifest refresh, explicit diff review, tests and an updated ownership decision. No upstream write access is assumed.
-- Import no CRM/stock/accounting writes via Rally status mirror. Use explicit Odoo integration permissions and preserve no-live-provider-test caveats.
+- `external/rally/` contains 94 ordinary versioned files copied from the Rally source commit `b4726668b7a88d1c1cd58ed80c04c1d48d120482`; it is no longer a submodule.
+- Never modify or delete the external `em3rc0dTh/Rally` repository as a side effect of `odoo-engineering` work.
+- Keep the imported snapshot byte-identical unless an independently planned local adaptation is explicitly required; record divergence and new tests. For synchronized updates, re-import from a pinned upstream commit and re-verify blob SHA + mode for all files.
+- Read `research/integrations/rally/README.md` and `feature-decisions.md` before planning integration; Rally is a standalone operational-assurance service, not an Odoo ERP replacement or addon.
+- The owner states they own both repositories, but commercial third-party/employee/customer rights and product-brand restrictions must still be reviewed before external redistribution.
+- No claims of production certification, actual customer integration, SUNAT validity or Odoo addon runtime tests without reproducible evidence.

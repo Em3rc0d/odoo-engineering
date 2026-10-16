@@ -6,7 +6,7 @@
   "tree_sha": "b4726668b7a88d1c1cd58ed80c04c1d48d120482",
   "total_tree_entries": 104,
   "total_file_entries": 94,
-  "mode": "git-submodule",
+  "mode": "physical-import",
   "location": "external/rally",
   "license_assessment": "NO_REPOSITORY_WIDE_LICENSE_OBSERVED; reference only, do not assume rights to copy/relicense",
   "ci_evidence": "https://github.com/em3rc0dTh/Rally/actions/runs/38579622200",
@@ -481,5 +481,16 @@
       "sha": "6d14f7d7a79dca316dc8e2a28aa4c1f711883ddc",
       "size_bytes": 505
     }
-  ]
+  ],
+  "integrity_check": {
+    "source_commit": "b4726668b7a88d1c1cd58ed80c04c1d48d120482",
+    "compared_paths": 94,
+    "matched_blob_sha_and_mode": 94,
+    "missing": 0,
+    "unexpected": 0,
+    "verified_on": "2026-10-16"
+  },
+  "source_not_modified": true,
+  "git_history_imported": false,
+  "access_note": "User asserts ownership of both repositories; commercial third-party IP and employment/client rights not independently audited"
 }

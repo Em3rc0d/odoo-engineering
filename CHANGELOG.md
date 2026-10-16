@@ -14,8 +14,10 @@
 ## 0.1.0 — 2026-10-13
 - Evidence repository foundation and findings.
 
-## 2026-10-16 — Pinned Rally source and ownership integration
+## 2026-10-16 — Import full Rally source directly
 
-- Added Rally as a pinned full-tree external Git submodule; no upstream files copied or changed.
-- Recorded 94 tracked files and 22 capability ownership decisions under `research/integrations/rally/`.
-- Preserved Odoo-centric addon and runtime boundaries; customer deployment and license gates remain open.
+- Replaced `external/rally` Git submodule with **all 94 source files** as ordinary Git-tracked files, copied from upstream commit `b4726668b7a88d1c1cd58ed80c04c1d48d120482`.
+- Removed obsolete `.gitmodules` and gitlink. No changes to the original `em3rc0dTh/Rally` repository.
+- Verified path, Git blob SHA and file mode parity for all 94 files before committing.
+- Preserved 22 domain ownership decisions, complete source manifest and production/MVP gates; updated handoff docs to describe an independent source snapshot.
+- No cross-service integration, Odoo addon certification or customer deployment is implied.

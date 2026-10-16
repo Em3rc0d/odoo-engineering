@@ -3,7 +3,7 @@
   "updated": "2026-10-16",
   "source_repository": "em3rc0dTh/Rally",
   "source_commit": "b4726668b7a88d1c1cd58ed80c04c1d48d120482",
-  "policy": "PIN_AS_SUBMODULE_DO_NOT_COPY_SOURCE_WITHOUT_RIGHTS",
+  "policy": "FULL_SOURCE_PHYSICAL_IMPORT_KEEP_PROJECT_BOUNDARIES",
   "legend": {
     "ODOO": "Odoo/odoo-engineering is source of commercial truth",
     "RALLY": "Rally is source of operational assurance",
@@ -208,5 +208,8 @@
       "source_paths": "docs/03-open-source-catalog.md, AGENTS.md",
       "caveat": "No upstream repository-wide license; brand clearance needed"
     }
-  ]
+  ],
+  "import_mode": "physical-vendored-source-snapshot",
+  "imported_file_count": 94,
+  "original_repository_untouched": true
 }
