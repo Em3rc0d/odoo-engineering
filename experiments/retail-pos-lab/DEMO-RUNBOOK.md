@@ -21,6 +21,7 @@ Validación repetible:
 ```bash
 bash scripts/lab.sh version
 bash scripts/lab.sh check-demo
+bash scripts/lab.sh checkout-smoke  # prueba transaccional con rollback, no afecta tus ventas
 bash scripts/lab.sh status
 ```
 
@@ -62,3 +63,7 @@ bash scripts/lab.sh down             # conserva datos
 - **No se modificó** el código importado de Rally.
 
 No uses datos de contribuyentes reales, ni certificados, ni claves SOL.
+
+## Prueba automática de ciclo de caja (ORM, no navegador)
+
+El comando `checkout-smoke` abre una sesión ficticia en el ORM real de Odoo, cobra una unidad en efectivo, comprueba el pago, cierra la caja y verifica la reducción de stock. **Todo se revierte** mediante `rollback` para no alterar tus existencias. Exige que no haya una sesión abierta en la caja demo. Este test no sustituye las pruebas visuales en el navegador ni toca SUNAT.

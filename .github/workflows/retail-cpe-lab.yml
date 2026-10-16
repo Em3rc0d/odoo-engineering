@@ -23,7 +23,7 @@ jobs:
       - name: Validate shell and compose syntax
         run: |
           bash -n experiments/retail-pos-lab/scripts/lab.sh
-          python3 -m py_compile experiments/retail-pos-lab/scripts/seed_demo.py experiments/retail-pos-lab/scripts/check_demo.py
+          python3 -m py_compile experiments/retail-pos-lab/scripts/seed_demo.py experiments/retail-pos-lab/scripts/check_demo.py experiments/retail-pos-lab/scripts/checkout_smoke.py
           cd experiments/retail-pos-lab
           bash scripts/lab.sh init
           docker compose --env-file .env.local -f compose.yaml config --quiet
@@ -51,6 +51,7 @@ jobs:
           docker compose --env-file .env.local -f compose.yaml up -d --wait odoo
           bash scripts/lab.sh seed-demo
           bash scripts/lab.sh check-demo
+          bash scripts/lab.sh checkout-smoke
       - name: Launch Odoo and verify HTTP readiness
         run: |
           cd experiments/retail-pos-lab

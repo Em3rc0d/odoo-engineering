@@ -91,6 +91,9 @@ case "$TASK" in
   check-demo)
     compose exec -T odoo sh -c 'exec odoo shell -d retail_peru_lab --no-http --db_host="$HOST" --db_port="$PORT" --db_user="$USER" --db_password="$PASSWORD"' < scripts/check_demo.py
     ;;
+  checkout-smoke)
+    compose exec -T odoo sh -c 'exec odoo shell -d retail_peru_lab --no-http --db_host="$HOST" --db_port="$PORT" --db_user="$USER" --db_password="$PASSWORD"' < scripts/checkout_smoke.py
+    ;;
   install-addon|upgrade-addon)
     initialize
     command -v docker >/dev/null || { echo "Docker Compose required" >&2; exit 1; }
@@ -117,7 +120,7 @@ case "$TASK" in
     sed -n 's/^admin_passwd = //p' .local/odoo.conf
     ;;
   *)
-    echo "Usage: bash scripts/lab.sh {init|up|down|status|logs|version|demo-setup|seed-demo|check-demo|install-addon|upgrade-addon|validate-contract|master-password}"
+    echo "Usage: bash scripts/lab.sh {init|up|down|status|logs|version|demo-setup|seed-demo|check-demo|checkout-smoke|install-addon|upgrade-addon|validate-contract|master-password}"
     exit 2
     ;;
 esac
