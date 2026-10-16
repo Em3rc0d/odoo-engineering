@@ -104,7 +104,17 @@ if not config:
 if manual_pm not in config.payment_method_ids:
     config.write({"payment_method_ids": [Command.link(manual_pm.id)]})
 if not config.payment_method_ids.filtered("is_cash_count"):
-    raise RuntimeError("POS has no cash method. Review accounting configuration.")
+    # Odoo 19 may default to bank-only methods when another POS payment method
+    # already exists. A register cannot open without an explicit cash method.
+    free_cash = pm_model.search([
+        ("company_id", "=", company.id),
+        ("is_cash_count", "=", True),
+        ("config_ids", "=", False),
+    ], limit=1)
+    if not free_cash:
+        free_cash = config._create_cash_payment_method()
+    config.write({"payment_method_ids": [Command.link(free_cash.id)]})
+assert config.payment_method_ids.filtered("is_cash_count"), "Cash method creation failed"
 
 # An illustrative purchaser to test 8-digit DNI handling in the local simulator.
 partner_model = env["res.partner"].sudo()
