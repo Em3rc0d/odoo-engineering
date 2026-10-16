@@ -87,7 +87,7 @@ case "$TASK" in
     echo "Addon installation/upgrade command completed; inspect Apps and invoice form."
     ;;
   validate-contract)
-    python3 -m unittest discover -s ../../integrations/sunat/tests -v
+    (cd ../../integrations/sunat && python3 -m unittest discover -s tests -v)
     ;;
   master-password)
     [[ -f .local/odoo.conf ]] || { echo "Initialize first" >&2; exit 1; }

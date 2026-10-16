@@ -19,7 +19,7 @@ jobs:
       - name: Validate Python/XML/ACL structure
         run: python3 experiments/retail-pos-lab/scripts/verify_static.py
       - name: Run stand-alone Nubefact contract tests (no network)
-        run: python3 -m unittest discover -s integrations/sunat/tests -v
+        run: cd integrations/sunat && python3 -m unittest discover -s tests -v
       - name: Validate shell and compose syntax
         run: |
           bash -n experiments/retail-pos-lab/scripts/lab.sh
