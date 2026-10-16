@@ -44,3 +44,7 @@ Se añadió [experiments/retail-pos-lab](../../experiments/retail-pos-lab/README
 **GO: investigación específica + demo técnica acotada en entorno desechable + ventas de descubrimiento.**
 **NO GO: vender un POS integral con facturación SUNAT antes de integración real y aceptación.**
 **NO GO: desarrollar IA, catálogo, multisucursal o generar un clon visual idéntico antes de cerrar operaciones y compradores.**
+
+## Diseño de experiencia y operación (DUX-001)
+
+Se añadió un [paquete de diseño visual y recorridos](design/README.md) con [mapa de pantallas y bocetos](design/screen-map.md), [siete diagramas de secuencia](design/sequences.md), [estados y criterios de aceptación](design/states-and-acceptance.md), [componentes y contratos](design/component-map.md) y [línea de carrera](design/roadmap-and-outcomes.md). **Es una propuesta sin pruebas de producción**, alineada con la decisión fiscal provisional OPeru + Nubefact y los gates G0–G4.
