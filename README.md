@@ -41,3 +41,9 @@ The entire 94-file source snapshot from `em3rc0dTh/Rally` is now **copied direct
 The source-to-target Git blob SHA + file mode comparison passed **94/94** at import time. The original Rally commit history is not copied; this repository carries an exact source **snapshot**. Updates do not sync automatically. Refer to [integration guide](research/integrations/rally/README.md), [full file manifest](research/integrations/rally/source-manifest.json), [22 capability decisions](research/integrations/rally/feature-decisions.md) and [commercial MVP scope](research/integrations/rally/mvp-boundary.md).
 
 **Distinct responsibilities:** Odoo handles POS, sales, inventory, cash and fiscal documents; Rally handles custody, operational evidence and reconciliation as a separate optional application. Physical copying does not automatically install Rally as an Odoo addon, integrate it at runtime or qualify either system for production.
+
+## Competir con INVY en Perú — investigación y MVP
+
+La estrategia de un **POS + inventario + caja con Odoo 19**, criterios reales para facturación SUNAT, onboarding repetible y primeros pilotos pagados está documentada en [commercial/retail-peru](commercial/retail-peru/README.md).
+
+Contiene [matriz de 22 capacidades](commercial/retail-peru/parity.json), [contrato técnico](commercial/retail-peru/technical-contract.md), [gates de aceptación](commercial/retail-peru/acceptance-gates.md), [experimento de ventas](commercial/retail-peru/sales-experiment.md), [unit economics](commercial/retail-peru/unit-economics.md) y [sprint de 14 días](commercial/retail-peru/execution-plan.md). **Todavía no es una distribución comercial instalada ni una integración CPE certificada.**

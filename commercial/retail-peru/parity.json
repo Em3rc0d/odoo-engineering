@@ -1,0 +1,232 @@
+{
+  "version": "1.0",
+  "as_of": "2026-10-16",
+  "competitor": "INVY Perú",
+  "competitor_url": "https://www.invyperu.com/",
+  "price_url": "https://www.invyperu.com/precios",
+  "source_classification": "COMPETITOR_MARKETING_OBSERVED_ONLY",
+  "target": "Odoo Community 19 self-hosted retail",
+  "note": "An official Odoo module's existence is not evidence that it is installed, production-safe or complies with Peru electronic invoicing.",
+  "items": [
+    {
+      "id": "INV-01",
+      "capability": "Registro, empresa y acceso",
+      "observation": "Anunciado públicamente",
+      "implementation": "odoo_native + product_onboarding",
+      "phase": "MVP",
+      "validation": "NO_RUNTIME_EVIDENCE",
+      "commercial_priority": "Alta",
+      "technical_risk": "Alta"
+    },
+    {
+      "id": "INV-02",
+      "capability": "Productos, categorías, SKU y códigos de barras",
+      "observation": "Anunciado públicamente",
+      "implementation": "odoo_native(product,barcodes)",
+      "phase": "MVP",
+      "validation": "SOURCE_EXISTS_NOT_TESTED",
+      "commercial_priority": "Alta",
+      "technical_risk": "Media"
+    },
+    {
+      "id": "INV-03",
+      "capability": "Inventario, ingresos, salidas, ajustes",
+      "observation": "Anunciado públicamente",
+      "implementation": "odoo_native(stock)",
+      "phase": "MVP",
+      "validation": "SOURCE_EXISTS_NOT_TESTED",
+      "commercial_priority": "Alta",
+      "technical_risk": "Alta"
+    },
+    {
+      "id": "INV-04",
+      "capability": "POS, ventas, descuentos y pagos",
+      "observation": "Anunciado públicamente",
+      "implementation": "odoo_native(point_of_sale)",
+      "phase": "MVP",
+      "validation": "SOURCE_EXISTS_NOT_TESTED",
+      "commercial_priority": "Alta",
+      "technical_risk": "Alta"
+    },
+    {
+      "id": "INV-05",
+      "capability": "Apertura, arqueo y cierre de caja",
+      "observation": "Anunciado públicamente",
+      "implementation": "odoo_native(point_of_sale)",
+      "phase": "MVP",
+      "validation": "SOURCE_EXISTS_NOT_TESTED",
+      "commercial_priority": "Alta",
+      "technical_risk": "Alta"
+    },
+    {
+      "id": "INV-06",
+      "capability": "Devoluciones y reversión de inventario",
+      "observation": "Anunciado públicamente",
+      "implementation": "odoo_native(point_of_sale,stock)",
+      "phase": "MVP",
+      "validation": "SOURCE_EXISTS_NOT_TESTED",
+      "commercial_priority": "Alta",
+      "technical_risk": "Alta"
+    },
+    {
+      "id": "INV-07",
+      "capability": "Clientes y proveedores",
+      "observation": "Anunciado públicamente",
+      "implementation": "odoo_native(base,purchase)",
+      "phase": "MVP",
+      "validation": "SOURCE_EXISTS_NOT_TESTED",
+      "commercial_priority": "Alta",
+      "technical_risk": "Media"
+    },
+    {
+      "id": "INV-08",
+      "capability": "Roles y permisos por negocio",
+      "observation": "Anunciado públicamente",
+      "implementation": "odoo_native_acl",
+      "phase": "MVP",
+      "validation": "SOURCE_EXISTS_NOT_TESTED",
+      "commercial_priority": "Alta",
+      "technical_risk": "Alta"
+    },
+    {
+      "id": "INV-09",
+      "capability": "Reportes de ventas, caja y stock",
+      "observation": "Anunciado públicamente",
+      "implementation": "odoo_native + candidate_oe_sales_dashboard",
+      "phase": "MVP",
+      "validation": "ADDON_UNTESTED",
+      "commercial_priority": "Media",
+      "technical_risk": "Media"
+    },
+    {
+      "id": "INV-10",
+      "capability": "Facturas, boletas, notas de crédito SUNAT",
+      "observation": "Anunciado públicamente",
+      "implementation": "l10n_pe base + NEW_EDI_PROVIDER_INTEGRATION",
+      "phase": "DIRECT_COMPETITOR_GATE",
+      "validation": "L10N_PE_EDI_AVAILABILITY_UNCONFIRMED_IN_COMMUNITY",
+      "commercial_priority": "Alta",
+      "technical_risk": "Crítica"
+    },
+    {
+      "id": "INV-11",
+      "capability": "Estado aceptado/rechazado, XML, PDF, CDR, reintentos",
+      "observation": "Anunciado públicamente",
+      "implementation": "NEW_EDI_PROVIDER_INTEGRATION",
+      "phase": "DIRECT_COMPETITOR_GATE",
+      "validation": "NOT_BUILT",
+      "commercial_priority": "Alta",
+      "technical_risk": "Crítica"
+    },
+    {
+      "id": "INV-12",
+      "capability": "Pago Yape/Plin como medio registrado",
+      "observation": "Yape aparece públicamente",
+      "implementation": "odoo_pos_manual_method",
+      "phase": "MVP",
+      "validation": "REQUIRES_LOCAL_SCENARIO",
+      "commercial_priority": "Media",
+      "technical_risk": "Media"
+    },
+    {
+      "id": "INV-13",
+      "capability": "POS con corte de internet",
+      "observation": "Odoo tiene funcionalidad offline documentada; comparar en INVY",
+      "implementation": "odoo_native_limited_offline",
+      "phase": "POST_GATE",
+      "validation": "OFFICIAL_LIMITATIONS_NO_LIVE_TEST",
+      "commercial_priority": "Media",
+      "technical_risk": "Alta"
+    },
+    {
+      "id": "INV-14",
+      "capability": "Dos o más sucursales, multicaja",
+      "observation": "Anunciado públicamente",
+      "implementation": "odoo_native_multicompany_or_warehouses",
+      "phase": "LATER",
+      "validation": "NOT_SCOPED",
+      "commercial_priority": "Media",
+      "technical_risk": "Alta"
+    },
+    {
+      "id": "INV-15",
+      "capability": "Catálogo virtual y pedidos",
+      "observation": "Anunciado públicamente",
+      "implementation": "odoo_website_sale_or_custom",
+      "phase": "LATER",
+      "validation": "NOT_ASSESSED",
+      "commercial_priority": "Media",
+      "technical_risk": "Media"
+    },
+    {
+      "id": "INV-16",
+      "capability": "Integración Shopify y WooCommerce",
+      "observation": "Anunciado públicamente",
+      "implementation": "THIRD_PARTY_CONNECTORS",
+      "phase": "LATER",
+      "validation": "NOT_ASSESSED",
+      "commercial_priority": "Baja",
+      "technical_risk": "Media"
+    },
+    {
+      "id": "INV-17",
+      "capability": "Inventario predictivo",
+      "observation": "Anunciado públicamente",
+      "implementation": "CUSTOM_STATS_NOT_AI_BY_DEFAULT",
+      "phase": "LATER",
+      "validation": "NOT_ASSESSED",
+      "commercial_priority": "Media",
+      "technical_risk": "Alta"
+    },
+    {
+      "id": "INV-18",
+      "capability": "Asistente IA y créditos mensuales",
+      "observation": "Anunciado públicamente",
+      "implementation": "CUSTOM_READ_ONLY_ANALYTICS",
+      "phase": "LATER",
+      "validation": "NOT_ASSESSED",
+      "commercial_priority": "Baja",
+      "technical_risk": "Media"
+    },
+    {
+      "id": "INV-19",
+      "capability": "Suscripción, pruebas gratis, renovación y cancelación",
+      "observation": "Anunciado públicamente",
+      "implementation": "NEW_BILLING_ONBOARDING_SERVICE",
+      "phase": "PILOT_MANUAL_FIRST",
+      "validation": "NOT_BUILT",
+      "commercial_priority": "Alta",
+      "technical_risk": "Alta"
+    },
+    {
+      "id": "INV-20",
+      "capability": "Alta de nuevas tiendas con base/filestore aislados",
+      "observation": "Requisito de nuestra operación",
+      "implementation": "NEW_TENANT_PROVISIONING",
+      "phase": "MVP",
+      "validation": "NOT_BUILT",
+      "commercial_priority": "Alta",
+      "technical_risk": "Crítica"
+    },
+    {
+      "id": "INV-21",
+      "capability": "Backups probados y restauración real",
+      "observation": "Requisito de nuestra operación",
+      "implementation": "NEW_BACKUP_RESTORE",
+      "phase": "MVP",
+      "validation": "NOT_BUILT",
+      "commercial_priority": "Alta",
+      "technical_risk": "Crítica"
+    },
+    {
+      "id": "INV-22",
+      "capability": "Soporte, onboarding y migración desde Excel",
+      "observation": "Hipótesis de diferenciación",
+      "implementation": "SERVICE_PLAYBOOK",
+      "phase": "MVP",
+      "validation": "NOT_VALIDATED",
+      "commercial_priority": "Alta",
+      "technical_risk": "Media"
+    }
+  ]
+}
