@@ -18,6 +18,12 @@ Producto SaaS de punto de venta, inventario, caja y comprobantes electrónicos p
 | quarries | [Extracciones](MK0/quarries/01-extractions.md) | [Brechas](MK1/quarries/01-findings-and-gaps.md) |
 | mining-site | [Procedencia y fuentes](MK0/mining-site/01-sources.md) | [Libro de evidencia](MK1/mining-site/01-research-ledger.md) |
 
+## Historia y evidencias consolidadas
+
+- [**Decisiones de la conversación, implementación y pendientes**](CONVERSATION-DECISIONS.md)
+- [**MK1 / brainstorming: actores, objetivos y journeys**](MK1/brainstorming/01-actors-and-journeys.md)
+- [**MK1 / registro de evidencias de CI y bloqueos**](MK1/test/EVIDENCE-REGISTER.md)
+
 ## Regla de verdad
 
 - **Probado:** GitHub Actions [38936119080](https://github.com/Em3rc0d/odoo-engineering/actions/runs/38936119080) 16-oct-2026, Odoo 19 Community: carga POS/inventario, tienda ficticia, venta ORM en efectivo, cierre de caja y stock 30→29 con rollback.
