@@ -48,3 +48,7 @@ Se añadió [experiments/retail-pos-lab](../../experiments/retail-pos-lab/README
 ## Diseño de experiencia y operación (DUX-001)
 
 Se añadió un [paquete de diseño visual y recorridos](design/README.md) con [mapa de pantallas y bocetos](design/screen-map.md), [siete diagramas de secuencia](design/sequences.md), [estados y criterios de aceptación](design/states-and-acceptance.md), [componentes y contratos](design/component-map.md) y [línea de carrera](design/roadmap-and-outcomes.md). **Es una propuesta sin pruebas de producción**, alineada con la decisión fiscal provisional OPeru + Nubefact y los gates G0–G4.
+
+## Expediente integral MK0/MK1 — 2026-10-19
+
+Se consolidó la línea de competencia de capacidades (sin copiar UI, marca ni código de INVY) en [invy-peru-copy](../invy-peru-copy/README.md), que centraliza [SRS](../invy-peru-copy/MK1/design/SRS.md), [20 CU](../invy-peru-copy/MK1/design/use-cases.md), [arquitectura](../invy-peru-copy/MK1/arch/01-system-architecture.md), [estado fiscal y riesgos](../invy-peru-copy/MK1/arch/03-decisions-and-risks.md) y [test/traceability](../invy-peru-copy/MK1/test/traceability.csv). La nota anterior sobre ausencia de pruebas del laboratorio es histórica: el **16-oct-2026**, CI [38936119080](https://github.com/Em3rc0d/odoo-engineering/actions/runs/38936119080) verificó bootstrap y checkout/cierre/stock ORM; no probó browser completo ni SUNAT real.

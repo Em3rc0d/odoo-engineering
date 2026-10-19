@@ -24,20 +24,20 @@
 |---|---|---|---|---|
 | E2E-01 | RF-024 a RF-038 | abrir caja, 2 SKU, cash, factura opcional y cierre | una venta, stock/pago/caja correctos | ORM parcial CI; UI pendiente |
 | E2E-02 | RF-034, RF-035, RF-037 | dos confirmaciones de la misma venta | una sola venta, una salida stock | pendiente |
-| E2E-03 | RF-025, RF-040 a RF-044 | apertura S/100, ventas, egreso y arqueo con diferencia | saldo esperado y acta justificada | pendiente |
+| E2E-03 | RF-024, RF-025 y RF-040 a RF-044 | apertura S/100, ventas, egreso y arqueo con diferencia | saldo esperado y acta justificada | pendiente |
 | E2E-04 | RF-019 a RF-022 | 2 cajas venden el último artículo | no doble consumo, política declarada | pendiente |
 | E2E-05 | RF-030, RF-046 a RF-065 | factura sin RUC válido, igv no soportado | error previo envío sin falso CPE | pendiente |
 | E2E-06 | RF-045 a RF-065 | preparar XML, firmar y enviar autorizadamente | evidencia tributaria por tipo | BLOCKED |
-| E2E-07 | RF-056 a RF-062 | timeout posterior a envío posible | estado desconocido, sin duplicación | BLOCKED |
-| E2E-08 | RF-060 a RF-063 | rechazo/nota/corrección con origen | histórico preservado y procedimiento válido | BLOCKED |
-| E2E-09 | RF-067 a RF-071 | devolución repetida/parcial/deteriorada | no exceso, dinero/stock/fiscal independientes | pendiente |
-| E2E-10 | RF-071 a RF-074 | pérdida internet, caché, re-sync dos veces | bloqueo o sincronización única | pendiente |
+| E2E-07 | RF-054 y RF-057 a RF-059 | timeout posterior a envío posible | estado desconocido, sin duplicación | BLOCKED |
+| E2E-08 | RF-060 a RF-062 | rechazo/nota/corrección con origen | histórico preservado y procedimiento válido | BLOCKED |
+| E2E-09 | RF-066 a RF-069 | devolución repetida/parcial/deteriorada | no exceso, dinero/stock/fiscal independientes | pendiente |
+| E2E-10 | RF-070 a RF-072 | pérdida internet, caché, re-sync dos veces | bloqueo o sincronización única | pendiente |
 | SEC-01 | RF-001, RF-002, RF-010, RNF-001 | 2 tenants, lectura/escritura cruzada | denegar todo acceso cruzado | pendiente |
 | SEC-02 | RF-045, RF-063, RNF-003 | credenciales expiradas o cruzadas | bloqueo, 0 secretos en logs | BLOCKED |
-| OPS-01 | RF-080 a RF-083, RNF-016 a RNF-019 | restaurar DB+filestore y comparar hashes | disponibilidad y datos íntegros | pendiente |
+| OPS-01 | RF-078 a RF-082, RNF-016 a RNF-019 | restaurar DB+filestore y comparar hashes | disponibilidad y datos íntegros | pendiente |
 | PERF-01 | RNF-020 a RNF-024 | cargar 2 cajas/2000 SKU | P95 y concurrencia SRS | pendiente |
 | UX-01 | RNF-028 a RNF-031 | 5 tareas observadas con usuarios | tasa y tiempos documentados | pendiente |
-| BUS-01 | RF-084, RF-085, RNF-040 | cobrar piloto y medir soporte real | margen sostenible demostrable | pendiente |
+| BUS-01 | RF-083 y RF-084, RNF-040 | cobrar piloto y medir soporte real | margen sostenible demostrable | pendiente |
 
 **Advertencia:** los rangos RF agrupados son orientativos para navegación; el mapeo autoritativo individual es el CSV. Nunca asignar estado PASSED a un TC por analogía.
 

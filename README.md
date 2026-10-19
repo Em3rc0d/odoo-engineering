@@ -51,3 +51,7 @@ Contiene [matriz de 22 capacidades](commercial/retail-peru/parity.json), [contra
 ## SUNAT / CPE — experimental adapter and fiscal decision
 
 The Peru retail track now has an [experimental Nubefact JSON gateway](integrations/sunat/README.md), a [fiscal provider choice ADR](integrations/sunat/DEC-PE-EDI-001.md), a limited original Python adapter and **nine unit tests with simulated HTTP**. No CPE has been emitted; the gateway is opt-in and cannot send by default. OPeru 19 + Nubefact is the preferred adoption candidate pending real Community compatibility, provider terms, and a controlled CDR validation.
+
+## INVY Perú Copy — dossier MK0/MK1 (2026-10-19)
+
+El expediente maestro de gestión comercial peruana está en [commercial/invy-peru-copy](commercial/invy-peru-copy/README.md): SRS canónico (88 RF, 43 RNF), 20 casos de uso, 45 BR, arquitectura, UX, fiscalidad open source como opción por validar, planes, fuentes y matriz RF/RNF→UC→TC. El laboratorio Odoo 19, POS/caja/stock fue comprobado en CI [38936119080](https://github.com/Em3rc0d/odoo-engineering/actions/runs/38936119080); esto **no** valida la emisión real SUNAT ni un SaaS multi-tenant comercial.

@@ -33,7 +33,7 @@ flowchart TB
     API --> GTE
     GTE --> EVID[("Evidencia fiscal por tenant")]
     EVID --> ODOO
-    OPS["Plano SaaS separado"] -. "Orquesta instancias; datos mínimos" .-> ODOO
+    OPS["Plano SaaS separado"] -.->|Orquesta instancias y datos mínimos| ODOO
     SEC[("Vault / secretos segregados")] -.-> GTE
     BAK[("Backup cifrado DB + filestore + metadatos")] -.-> DB
     BAK -.-> STORE
