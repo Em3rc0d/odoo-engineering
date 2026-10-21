@@ -18,4 +18,6 @@
 
 | E-012 | Venta POS pagada genera factura contable publicada, pasa a CPE **simulado**, no admite segundo envío y cierra caja con movimiento de stock | [Workflow 39645784357](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39645784357) · SHA `c9933a56fa8a38d2070ce563531d121bb23be0b8` · `POS_INVOICE_SIM_SMOKE_OK` | **PASS ORM local + rollback** | No demuestra comportamiento del navegador/cajero, COGS/FIFO, CPE válido, XML ni CDR |
 
+| E-013 | UAT del usuario en Windows, 6 capturas muestran apertura, venta, recibo NO CPE, orden y arqueo; detectan sobrepago manual Yape S/20 para S/11.80 con cash-out implícito S/8.20 | [UAT 2026-10-21-01](../../MK2/test/UAT-2026-10-21-01.md) · 6 PNG privados referenciados por SHA256; [issue #6](https://github.com/Em3rc0d/odoo-engineering/issues/6) | **PARCIAL VISUAL / CONTROL ABIERTO** | No confirma transferencia, dinero de vuelto entregado, conteo final, factura contable GUI, CDR ni auditoría del backend |
+
 No marcar requisitos del [SRS](../design/SRS.md) como aprobados por la sola existencia de documentación. [Plan maestro](01-master-test-plan.md) y [matriz de trazabilidad](traceability.csv) contienen los tests propuestos.
