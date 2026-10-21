@@ -38,6 +38,7 @@ jobs:
           cd experiments/retail-pos-lab
           bash scripts/lab.sh demo-setup
           bash scripts/lab.sh checkout-smoke
+          bash scripts/lab.sh probe-edi
       - name: Launch Odoo and verify HTTP readiness
         run: |
           cd experiments/retail-pos-lab
