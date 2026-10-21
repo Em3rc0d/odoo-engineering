@@ -28,4 +28,8 @@ El flujo es: brainstorming → design → arch → plan → build → test, con 
 
 ## Avance puntual de integración ORM (21/oct/2026)
 
-La [prueba automatizada de dos facturas contables contra el simulador](../../experiments/retail-pos-lab/DEMO-RUNBOOK.md) pasó en [CI 39644924493](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39644924493); rechazo de duplicación, resultado incierto y consulta simulada; rollback sin persistencia. No se ha recorrido **POS→factura→simulador en navegador** y ningún CPE real fue emitido.
+La [prueba automatizada de dos facturas contables contra el simulador](../../../experiments/retail-pos-lab/DEMO-RUNBOOK.md) pasó en [CI 39644924493](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39644924493); rechazo de duplicación, resultado incierto y consulta simulada; rollback sin persistencia. No se ha recorrido **POS→factura→simulador en navegador** y ningún CPE real fue emitido.
+
+## Avance POS hasta simulador, solo ORM (21/oct/2026)
+
+El [workflow 39645784357](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39645784357) pasa `POS_INVOICE_SIM_SMOKE_OK`: venta POS pagada en efectivo → `account.move` publicado → respuesta local SIMULADA → duplicado bloqueado → cierre de caja y stock -1 con rollback. El navegador POS y el CDR de SUNAT siguen pendientes. [UAT real del navegador y riesgo contable](test/02-browser-and-accounting-uat.md).

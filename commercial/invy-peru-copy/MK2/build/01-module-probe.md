@@ -31,3 +31,7 @@ La prueba de CLI y Odoo Shell se limita a retail_peru_lab. No hay emisión fisca
 ## Prueba ORM adicional sobre factura publicada
 
 Se añadió [invoice_simulation_smoke.py](../../../../experiments/retail-pos-lab/scripts/invoice_simulation_smoke.py), disponible con `bash scripts/lab.sh invoice-sim-smoke`. En [CI run 39644924493](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39644924493), SHA `b6e1091a7f85aeffac74dc928d765efd66a307e4`, los jobs static y odoo-install fueron verdes; log `INVOICE_SIM_SMOKE_OK posted=2 accepted_mock=1 unknown_then_checked=1 duplicate_blocked=1 real_sunat=NO rollback=YES`. Las identidades son sintéticas y las operaciones se revierten. **No cubre POS→account.move ni emisor fiscal verdadero**.
+
+## Evidencia adicional: POS ORM → factura publicada → simulador → arqueo
+
+Se agregó [pos_invoice_simulation_smoke.py](../../../../experiments/retail-pos-lab/scripts/pos_invoice_simulation_smoke.py), comando `bash scripts/lab.sh pos-invoice-sim-smoke`. [CI 39645784357](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39645784357) en SHA c9933a56fa8a38d2070ce563531d121bb23be0b8: static y odoo-install PASS, resultado `POS_INVOICE_SIM_SMOKE_OK paid_pos=1 posted_invoice=1 local_simulation=1 duplicate_rejected=1 cash_closed=1 stock_delta=-1 xml_signed=NO real_sunat=NO rollback=YES`. **Prueba Odoo ORM real** con valores ficticios, sin interfaz navegador/POS OWL ni canal fiscal, y rollback de todas las modificaciones.
