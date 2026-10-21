@@ -27,3 +27,7 @@ Desde experiments/retail-pos-lab:
 - bash scripts/lab.sh checkout-smoke
 
 La prueba de CLI y Odoo Shell se limita a retail_peru_lab. No hay emisión fiscal, conexión con SUNAT, token ni certificado. La prueba visual mediante navegador Windows sigue abierta.
+
+## Prueba ORM adicional sobre factura publicada
+
+Se añadió [invoice_simulation_smoke.py](../../../../experiments/retail-pos-lab/scripts/invoice_simulation_smoke.py), disponible con `bash scripts/lab.sh invoice-sim-smoke`. En [CI run 39644924493](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39644924493), SHA `b6e1091a7f85aeffac74dc928d765efd66a307e4`, los jobs static y odoo-install fueron verdes; log `INVOICE_SIM_SMOKE_OK posted=2 accepted_mock=1 unknown_then_checked=1 duplicate_blocked=1 real_sunat=NO rollback=YES`. Las identidades son sintéticas y las operaciones se revierten. **No cubre POS→account.move ni emisor fiscal verdadero**.

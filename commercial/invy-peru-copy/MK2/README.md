@@ -25,3 +25,7 @@ El flujo es: brainstorming → design → arch → plan → build → test, con 
 - [quarries](quarries/01-findings.md): contradicciones y contraargumentos.
 
 **Resultado provisional:** continuar validación técnica con datos ficticios. Elegir proveedor, transmitir CPE, publicar SaaS y captar clientes siguen bloqueados por sus respectivos gates. El expediente comercial independiente mantiene L1 por la relación laboral.
+
+## Avance puntual de integración ORM (21/oct/2026)
+
+La [prueba automatizada de dos facturas contables contra el simulador](../../experiments/retail-pos-lab/DEMO-RUNBOOK.md) pasó en [CI 39644924493](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39644924493); rechazo de duplicación, resultado incierto y consulta simulada; rollback sin persistencia. No se ha recorrido **POS→factura→simulador en navegador** y ningún CPE real fue emitido.
