@@ -1,3 +1,4 @@
+from dataclasses import replace
 import io
 import json
 import sys
@@ -98,6 +99,26 @@ class GatewayTests(unittest.TestCase):
         self.assertEqual(request.get_method(), "POST")
         self.assertIn(b'"operacion": "generar_comprobante"', request.data)
         self.assertIn("token=", request.get_header("Authorization"))
+
+    def test_prepared_cpe_changes_fail_closed_without_network(self):
+        op = FakeOpener({"aceptada_por_sunat": True})
+        gateway = NubefactGateway(route=ROUTE, token=TOKEN, enable_emission=True, opener=op)
+        for mutate in (
+            lambda p: p.payload.__setitem__("total", 1.0),
+            lambda p: p.payload.__setitem__("cliente_denominacion", "SUSTITUIDO"),
+            lambda p: p.payload["items"][0].__setitem__("cantidad", 99),
+            lambda p: p.payload.__setitem__("tipo_de_comprobante", 2),
+            lambda p: p.payload.__setitem__("total", float("nan")),
+        ):
+            with self.subTest(mutate=mutate):
+                prepared = prepare_standard_sale(IDENTITY, SALE)
+                mutate(prepared)
+                with self.assertRaises(ValueError):
+                    gateway.submit(prepared, human_authorized=True)
+        prepared = replace(prepare_standard_sale(IDENTITY, SALE), sha256="0" * 64)
+        with self.assertRaises(ValueError):
+            gateway.submit(prepared, human_authorized=True)
+        self.assertFalse(op.calls, "Tampered requests must never hit the provider")
 
     def test_ambiguous_failure_must_never_retry(self):
         op = FakeOpener(error=URLError("network down, perhaps sent"))
