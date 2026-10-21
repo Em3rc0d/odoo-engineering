@@ -67,3 +67,14 @@ No uses datos de contribuyentes reales, ni certificados, ni claves SOL.
 ## Prueba automática de ciclo de caja (ORM, no navegador)
 
 El comando `checkout-smoke` abre una sesión ficticia en el ORM real de Odoo, cobra una unidad en efectivo, comprueba el pago, cierra la caja y verifica la reducción de stock. **Todo se revierte** mediante `rollback` para no alterar tus existencias. Exige que no haya una sesión abierta en la caja demo. Este test no sustituye las pruebas visuales en el navegador ni toca SUNAT.
+
+## Prueba de factura CONTABLE publicada contra simulador local
+
+En el laboratorio desechable (sin fuentes externas ni emisión real), el comando nuevo ejecuta el flujo de una factura contable sintética, su envío al **simulador local**, rechazo del segundo envío, prueba del estado incierto y consulta posterior de estado. Requiere Odoo Community 19 configurado y usa un rollback único al concluir:
+
+```bash
+bash scripts/lab.sh demo-setup
+bash scripts/lab.sh invoice-sim-smoke
+```
+
+La prueba utiliza identificadores **ficticios**, nunca se comunica con SUNAT, no produce firma XML ni CDR y no deja registros contables de los casos de prueba. Un PASS de esta ruta ORM no representa un recorrido de cajero en navegador **POS→account.move**, que sigue pendiente.
