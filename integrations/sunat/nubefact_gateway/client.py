@@ -1,4 +1,6 @@
 """Explicit-opt-in, NO-RETRY Nubefact JSON transport. Never sends by default."""
+import hashlib
+import hmac
 import json
 import re
 import urllib.error
@@ -52,6 +54,20 @@ class NubefactGateway:
             raise ValueError("Unexpected operation")
         if prepared.payload.get("numero") != prepared.identity.number or prepared.payload.get("serie") != prepared.identity.series:
             raise ValueError("Document identity changed")
+        # PreparedCPE.payload contains mutable dicts/lists although its dataclass is frozen.
+        # Guard against modifications after validation; this is an integrity check,
+        # NOT a signature or an authorization mechanism for untrusted objects.
+        try:
+            current_hash = hashlib.sha256(json.dumps(
+                prepared.payload, sort_keys=True, separators=(",", ":"),
+                ensure_ascii=False, allow_nan=False,
+            ).encode("utf-8")).hexdigest()
+        except (TypeError, ValueError, UnicodeError):
+            raise ValueError("Prepared CPE contains unsupported payload data") from None
+        if not isinstance(prepared.sha256, str) or not hmac.compare_digest(current_hash, prepared.sha256):
+            raise ValueError("Prepared CPE changed after validation; prepare it again")
+        if prepared.payload.get("tipo_de_comprobante") != (1 if prepared.identity.kind == "01" else 2):
+            raise ValueError("Document type changed")
         request = urllib.request.Request(
             self.route,
             data=json.dumps(prepared.payload, ensure_ascii=False).encode("utf-8"),
