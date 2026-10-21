@@ -34,3 +34,7 @@ OFFICIAL = fuente primaria; OBSERVED = log o hecho reproducible; INFERRED = dedu
 - **Emisión SUNAT real y SaaS listo:** NO PROBADOS/NO AUTORIZADOS.
 - **Experimento comercial:** NO GO, 0 compradores pagadores certificados y L1 laboral externo bloqueado; no hubo prospección.
 - Expediente y gates: [MK2](MK2/README.md).
+
+## Ampliación de prueba MK2: factura contable→simulador (2026-10-21)
+
+[CI 39644924493](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39644924493) PASS sobre commit `b6e1091a7f85aeffac74dc928d765efd66a307e4`: dos `account.move` sintéticos publicados; aceptación y timeout simulados, consulta del resultado incierto, intento duplicado rechazado y rollback. Esto **cierra prueba ORM parcial del simulador**, no el recorrido de interfaz POS→account.move, ni SUNAT XML/CDR/credenciales, ni G3. Ver [MK2 test](MK2/test/01-evidence.md).

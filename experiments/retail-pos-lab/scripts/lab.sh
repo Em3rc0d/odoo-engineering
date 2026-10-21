@@ -91,6 +91,10 @@ case "$TASK" in
   check-demo)
     compose exec -T odoo sh -c 'exec odoo shell -d retail_peru_lab --no-http --db_host="$HOST" --db_port="$PORT" --db_user="$USER" --db_password="$PASSWORD"' < scripts/check_demo.py
     ;;
+  invoice-sim-smoke)
+    # Test a posted accounting document against the LOCAL simulator only.
+    compose exec -T odoo sh -c 'exec odoo shell -d retail_peru_lab --no-http --db_host="$HOST" --db_port="$PORT" --db_user="$USER" --db_password="$PASSWORD"' < scripts/invoice_simulation_smoke.py
+    ;;
   probe-edi)
     # Read-only inventory of modules actually present in THIS Odoo Community image.
     compose exec -T odoo sh -c 'exec odoo shell -d retail_peru_lab --no-http --db_host="$HOST" --db_port="$PORT" --db_user="$USER" --db_password="$PASSWORD"' < scripts/probe_edi_modules.py
@@ -124,7 +128,7 @@ case "$TASK" in
     sed -n 's/^admin_passwd = //p' .local/odoo.conf
     ;;
   *)
-    echo "Usage: bash scripts/lab.sh {init|up|down|status|logs|version|demo-setup|seed-demo|check-demo|checkout-smoke|probe-edi|install-addon|upgrade-addon|validate-contract|master-password}"
+    echo "Usage: bash scripts/lab.sh {init|up|down|status|logs|version|demo-setup|seed-demo|check-demo|checkout-smoke|invoice-sim-smoke|probe-edi|install-addon|upgrade-addon|validate-contract|master-password}"
     exit 2
     ;;
 esac
