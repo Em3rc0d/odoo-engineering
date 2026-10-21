@@ -11,4 +11,7 @@
 | E-007 | Restauración y aislamiento tenant de SaaS | Ninguna | **NO PROBADO / BLOQUEADO** | — |
 | E-008 | Ventas comerciales, clientes de pago y margen | Ninguna | **NO PROBADO / BLOQUEADO** | — |
 
+| E-009 | Imagen Odoo Community 19 tiene módulos base y NO contiene addons externos de EDI | [Workflow 39642972244](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39642972244) · SHA `091636e09855b607cae767b9e0ae0e1513ca8d95` · `EDI_PROBE_OK` | **PASS inventario local** | No prueba emisión fiscal, impossibilidad de instalar módulos externos, licencias de EDI o CDR |
+| E-010 | Checkout del laboratorio continúa pasando tras el nuevo probe | Run E-009, `CHECKOUT_SMOKE_OK` | **PASS ORM acotado y rollback** | No cubre GUI, doble clic, POS→factura→simulador, concurrente, SaaS ni emisión |
+
 No marcar requisitos del [SRS](../design/SRS.md) como aprobados por la sola existencia de documentación. [Plan maestro](01-master-test-plan.md) y [matriz de trazabilidad](traceability.csv) contienen los tests propuestos.

@@ -5,6 +5,13 @@
 ## Norte
 Producto SaaS de punto de venta, inventario, caja y comprobantes electrónicos para pequeños comercios peruanos. Objetivos simultáneos: adquirir experiencia profesional verificable, obtener ingresos recurrentes con margen sostenible y ayudar a PyMES a operar mejor.
 
+## MK2 · decisión fiscal/mercado (21-oct-2026)
+
+- [Expediente MK2 — fuentes, diseño, arquitectura, plan, laboratorio y test](MK2/README.md)
+- Prueba nueva: [inventario fiscal Community 19](../../experiments/retail-pos-lab/EDI-PROBE.md) mediante workflow [39642972244](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39642972244): EDI_PROBE_OK; módulos propios/base presentes, EDI OPeru/Community no incluido en **esta imagen**.
+- Estudio adversarial: INVY Pyme S/169 inc IGV/500 docs; Alegra POS Pyme S/93 inc IGV/1000 docs publicados; diferenciación de precio no probada.
+- **NO GO fiscal ni comercial**: soporte, modalidad, proveedor, licencias, pruebas navegador, compradores y L1 aún sin cerrar.
+
 ## Estructura MK0/MK1
 
 | Flujo | MK0: evidencia, mercado, viabilidad | MK1: especificación, diseño, entrega |
