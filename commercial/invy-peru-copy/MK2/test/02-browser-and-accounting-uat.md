@@ -1,6 +1,10 @@
 # UAT real de Odoo POS y regresión contable condicional — INVY MK2
 
-**Estado:** PROTOCOLO, NO EJECUTADO. Usar exclusivamente retail_peru_lab con fixtures ficticios, Windows/WSL2 y navegador en localhost. Sin SUNAT, Clave SOL ni datos personales de clientes.
+**Estado:** PROTOCOLO + PRIMERA UAT VISUAL PARCIAL EJECUTADA EL 21/OCT/2026. No todos los casos se completaron. Usar exclusivamente retail_peru_lab con fixtures ficticios, Windows/WSL2 y navegador en localhost. Sin SUNAT, Clave SOL ni datos personales de clientes.
+
+## Evidencia real recibida
+
+[Primera UAT visual con seis capturas privadas, hashes, hechos y límites](UAT-2026-10-21-01.md). El usuario abrió la caja, cobró una venta mediante Yape/Plin **MANUAL** por S/20 para una orden de S/11.80, vio el recibo demo y el arqueo y terminó viendo Open Register. El POS contabilizó **S/8.20 de vuelto en efectivo** y proyectó S/91.80 en caja desde S/100 inicial; el recuento final NO está capturado. [Issue de control #6](https://github.com/Em3rc0d/odoo-engineering/issues/6), [gate de política PAY-MAN-01](03-manual-payments-control-gate.md). **UAT-03 bloqueado para aceptación**, UAT-01 y UAT-07 observados parcialmente, UAT-02/04/05/06/08/09 no aprobados. Capturas NO publicadas en GitHub.
 
 ## Precondiciones
 
@@ -23,7 +27,7 @@
 | UAT-08 | Cajero y supervisor: probar rol/permisos | Acceso restringido sin bypass; documentar denegación |
 | UAT-09 | Cortar red solo en laboratorio, reconectar y reintentar | Sin doble pedido ni falsa aceptación de impuestos |
 
-Para cada caso: esperado vs real, captura sin PII, SHA, severidad, pasos y rollback. **NO marcar UAT PASS por pruebas ORM.**
+La tabla de arriba es el protocolo completo; los estados reales del primer ensayo constan en [UAT-2026-10-21-01](UAT-2026-10-21-01.md). Para cada caso: esperado vs real, captura sin PII, SHA, severidad, pasos y rollback. **NO marcar UAT PASS por pruebas ORM.**
 
 ## Regresión upstream específica, no reproducida
 

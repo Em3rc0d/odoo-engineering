@@ -33,3 +33,7 @@ La [prueba automatizada de dos facturas contables contra el simulador](../../../
 ## Avance POS hasta simulador, solo ORM (21/oct/2026)
 
 El [workflow 39645784357](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39645784357) pasa `POS_INVOICE_SIM_SMOKE_OK`: venta POS pagada en efectivo → `account.move` publicado → respuesta local SIMULADA → duplicado bloqueado → cierre de caja y stock -1 con rollback. El navegador POS y el CDR de SUNAT siguen pendientes. [UAT real del navegador y riesgo contable](test/02-browser-and-accounting-uat.md).
+
+## Primera UAT visual del usuario (2026-10-21)
+
+El POS de WSL2 abrió caja, registró una venta y mostró recibo/orden y cierre. Hubo un **sobrepago en Yape/Plin MANUAL** de S/20 sobre S/11.80 que Odoo trató como S/8.20 de vuelto en efectivo y produjo efectivo esperado S/91.80 desde apertura S/100. **Entrega física del vuelto y conteo final desconocidos**. Registrado en [UAT](test/UAT-2026-10-21-01.md) / [issue #6](https://github.com/Em3rc0d/odoo-engineering/issues/6); no se ha aprobado política exact-only ni añadido extensión al POS. Ninguna pantalla de XML/CDR o de simulación CPE se ha validado en navegador.

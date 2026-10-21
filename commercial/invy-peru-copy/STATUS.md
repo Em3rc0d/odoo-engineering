@@ -15,7 +15,7 @@
 | Docker Odoo Community 19 + Postgres 16 | CI VERDE, commit 48efd45 |
 | Instalar módulos y seed de 3 SKU, método efectivo y Yape/Plin manual | CI VERDE |
 | Apertura, venta pagada, cierre y decremento de stock con rollback | CI VERDE |
-| POS visual desde Windows y recorrido completo POS→factura→simulador | PENDIENTE |
+| POS visual desde Windows y recorrido completo POS→factura→simulador | **PARCIAL:** apertura, venta manual, ticket, orden y arqueo observados; factura y simulador en GUI PENDIENTES; sobrepago manual issue #6 |
 | Local CPE con rechazo/timeout y no duplicación | Código de simulación; no emisión |
 | XML firmado, SUNAT y CDR oficial | NO IMPLEMENTADO |
 | Hosting multi-tenant, backups restaurados y SLA | NO IMPLEMENTADO |
@@ -42,3 +42,7 @@ OFFICIAL = fuente primaria; OBSERVED = log o hecho reproducible; INFERRED = dedu
 ## MK2 nueva prueba: POS→factura→simulador local
 
 [Workflow 39645784357](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39645784357), SHA `c9933a56fa8a38d2070ce563531d121bb23be0b8`: abre POS con efectivo, paga una venta, genera `account.move` publicado mediante `action_pos_order_invoice()` con salida PDF deshabilitada, simula CPE local, bloquea duplicado, cierra caja y comprueba stock 1 unidad menos antes de rollback. **PASS de puente ORM, no prueba de navegación GUI ni CPE fiscal**. Riesgo contable ajeno no reproducido: [odoo/odoo#290124](https://github.com/odoo/odoo/issues/290124), afecta configuración FIFO/anglosajona/stock al cierre usando asistente masivo; no asumimos que el caso aplica a nuestra demo. Ver [UAT y gate contable](MK2/test/02-browser-and-accounting-uat.md).
+
+## Primer ensayo visual UAT del usuario — 21/oct/2026
+
+[Expediente UAT con seis capturas privadas y SHA256](MK2/test/UAT-2026-10-21-01.md): compra ficticia Cuaderno A5 S/10 + S/1.80 IGV = S/11.80, orden `261-1-000001`, Yape/Plin **REGISTRO MANUAL** ingresó S/20. El cierre muestra cambio/cash-out de S/8.20 y efectivo esperado S/91.80 desde S/100; **no sabemos si se entregó ese efectivo ni cuál fue el monto contado definitivo**. Ticket está correctamente señalado NO CPE. El botón Invoice aparentemente seleccionado NO prueba creación/publicación de factura. Resultado: **UAT parcial; G1 NO CERRADO**. [Issue #6](https://github.com/Em3rc0d/odoo-engineering/issues/6), [gate de política de sobrepago](MK2/test/03-manual-payments-control-gate.md). Sin cambios al código POS ni pruebas SUNAT reales.
