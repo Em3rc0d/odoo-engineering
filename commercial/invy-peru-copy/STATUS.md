@@ -38,3 +38,7 @@ OFFICIAL = fuente primaria; OBSERVED = log o hecho reproducible; INFERRED = dedu
 ## Ampliación de prueba MK2: factura contable→simulador (2026-10-21)
 
 [CI 39644924493](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39644924493) PASS sobre commit `b6e1091a7f85aeffac74dc928d765efd66a307e4`: dos `account.move` sintéticos publicados; aceptación y timeout simulados, consulta del resultado incierto, intento duplicado rechazado y rollback. Esto **cierra prueba ORM parcial del simulador**, no el recorrido de interfaz POS→account.move, ni SUNAT XML/CDR/credenciales, ni G3. Ver [MK2 test](MK2/test/01-evidence.md).
+
+## MK2 nueva prueba: POS→factura→simulador local
+
+[Workflow 39645784357](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39645784357), SHA `c9933a56fa8a38d2070ce563531d121bb23be0b8`: abre POS con efectivo, paga una venta, genera `account.move` publicado mediante `action_pos_order_invoice()` con salida PDF deshabilitada, simula CPE local, bloquea duplicado, cierra caja y comprueba stock 1 unidad menos antes de rollback. **PASS de puente ORM, no prueba de navegación GUI ni CPE fiscal**. Riesgo contable ajeno no reproducido: [odoo/odoo#290124](https://github.com/odoo/odoo/issues/290124), afecta configuración FIFO/anglosajona/stock al cierre usando asistente masivo; no asumimos que el caso aplica a nuestra demo. Ver [UAT y gate contable](MK2/test/02-browser-and-accounting-uat.md).

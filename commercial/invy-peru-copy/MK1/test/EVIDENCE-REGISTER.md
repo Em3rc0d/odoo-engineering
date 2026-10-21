@@ -16,4 +16,6 @@
 
 | E-011 | Factura contable sintética publicada entra al simulador sin duplicación; estado incierto se consulta | [Workflow 39644924493](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39644924493) · SHA `b6e1091a7f85aeffac74dc928d765efd66a307e4` · `INVOICE_SIM_SMOKE_OK` | **PASS ORM local y rollback** | No prueba POS→factura en interfaz, XML/firmas/CDR reales ni integración fiscal |
 
+| E-012 | Venta POS pagada genera factura contable publicada, pasa a CPE **simulado**, no admite segundo envío y cierra caja con movimiento de stock | [Workflow 39645784357](https://github.com/Em3rc0d/odoo-engineering/actions/runs/39645784357) · SHA `c9933a56fa8a38d2070ce563531d121bb23be0b8` · `POS_INVOICE_SIM_SMOKE_OK` | **PASS ORM local + rollback** | No demuestra comportamiento del navegador/cajero, COGS/FIFO, CPE válido, XML ni CDR |
+
 No marcar requisitos del [SRS](../design/SRS.md) como aprobados por la sola existencia de documentación. [Plan maestro](01-master-test-plan.md) y [matriz de trazabilidad](traceability.csv) contienen los tests propuestos.
