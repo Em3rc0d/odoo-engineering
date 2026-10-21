@@ -89,3 +89,17 @@ bash scripts/lab.sh pos-invoice-sim-smoke
 ```
 
 **No es E2E del navegador**, no usa Web POS/OWL y no genera ni transmite CPE XML/CDR. Los identificadores de emisor/comprador son ficticios, transitorios y sin credenciales. Nunca probar en una base de un contribuyente real.
+
+## Error CRLF al ejecutar en Ubuntu WSL
+
+Si `bash scripts/lab.sh demo-setup` produce `: invalid option name... set: pipefail` o aparece `^M` en `cat -v scripts/lab.sh | head`, probablemente Git para Windows hizo checkout con finales de línea CRLF. Desde `experiments/retail-pos-lab`:
+
+```bash
+sed -i 's/\r$//' scripts/lab.sh
+bash -n scripts/lab.sh
+bash scripts/lab.sh demo-setup
+```
+
+Este repositorio fija ahora `*.sh text eol=lf` en su `.gitattributes` de raíz para nuevas extracciones. **La regla no reescribe necesariamente archivos ya existentes en tu árbol de trabajo**, por lo que la corrección `sed` local sigue siendo necesaria. Si otro `.sh` sufriera el mismo problema, conviértelo individualmente. No modifiques ni compartas `.env.local`, `.local/odoo.conf` ni datos de usuarios para resolver un error de fin de línea.
+
+**Rutas:** `scripts/lab.sh` es relativo a `experiments/retail-pos-lab`, no a la raíz del repositorio. Usa Bash de WSL, no el shell de PowerShell.
