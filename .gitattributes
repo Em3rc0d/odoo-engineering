@@ -1,0 +1,8 @@
+# Preserve POSIX line endings for WSL/Linux entrypoints even when cloned by Git for Windows.
+# CRLF causes: ': invalid option name: set: pipefail' in scripts/lab.sh.
+*.sh text eol=lf
+*.bash text eol=lf
+*.py text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+Dockerfile text eol=lf
