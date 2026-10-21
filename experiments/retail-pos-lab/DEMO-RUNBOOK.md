@@ -78,3 +78,14 @@ bash scripts/lab.sh invoice-sim-smoke
 ```
 
 La prueba utiliza identificadores **ficticios**, nunca se comunica con SUNAT, no produce firma XML ni CDR y no deja registros contables de los casos de prueba. Un PASS de esta ruta ORM no representa un recorrido de cajero en navegador **POS→account.move**, que sigue pendiente.
+
+## Smoke POS→factura contable→simulador LOCAL (ORM, NO INTERFAZ)
+
+Con datos enteramente ficticios y rollback, el nuevo comando abre caja, registra una venta POS pagada en efectivo, utiliza `action_pos_order_invoice()` de Odoo 19 con la generación/envío automático PDF deshabilitados, comprueba que una factura contable publicada se vincula a la orden, y verifica el simulador local con bloqueo de duplicados; finalmente cierra la sesión y revierte todo.
+
+```bash
+bash scripts/lab.sh demo-setup
+bash scripts/lab.sh pos-invoice-sim-smoke
+```
+
+**No es E2E del navegador**, no usa Web POS/OWL y no genera ni transmite CPE XML/CDR. Los identificadores de emisor/comprador son ficticios, transitorios y sin credenciales. Nunca probar en una base de un contribuyente real.

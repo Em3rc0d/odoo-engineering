@@ -40,6 +40,7 @@ jobs:
           bash scripts/lab.sh checkout-smoke
           bash scripts/lab.sh probe-edi
           bash scripts/lab.sh invoice-sim-smoke
+          bash scripts/lab.sh pos-invoice-sim-smoke
       - name: Launch Odoo and verify HTTP readiness
         run: |
           cd experiments/retail-pos-lab
